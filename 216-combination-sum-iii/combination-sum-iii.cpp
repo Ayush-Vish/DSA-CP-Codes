@@ -5,6 +5,8 @@ public:
            ans.push_back(ds);
            return;
        }
+       if(idx >= arr.size()) return ;
+       if(ds.size() >k) return ;
         for(int i = idx  ;i < arr.size() ;i++) {
             if(arr[i] > target ) break;
             ds.push_back(arr[i]);
