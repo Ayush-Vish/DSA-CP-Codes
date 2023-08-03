@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void solve(int idx , vector<int> arr , set<vector<int>>  &ans  , vector<int> ds  ) {
+    void solve(int idx , vector<int>& arr , set<vector<int>>  &ans  , vector<int> ds  ) {
         if(idx >= arr.size()) {
             ans.insert(ds);
             return ;
