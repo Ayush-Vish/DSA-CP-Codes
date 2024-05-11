@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+typedef long long ll;
 bool checkSorted(vector<int> &a)
 {
     for (int i = 0; i < a.size() - 1; i++)
@@ -12,7 +12,7 @@ bool checkSorted(vector<int> &a)
 }
 void takeInput(vector<int> &a, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         int ele;
         cin >> ele;
@@ -47,26 +47,33 @@ struct hash_pair
 void solve()
 {
     int n;
-    cin >> n;
-    vector<int> arr(n);
-    takeInput(arr, n);
-    int ans =0 ;
-    unordered_map<pair<int,int> , int , hash_pair  > mpp ;
+	    cin>>n;
+	    vector<int> arr(n+1);
+	    for(int i=1;i<=n;i++){
+	        cin>>arr[i];
+	    }
+  
 
-    for (int i=0 ;i < n ;i ++ ) {
-        int num1 = arr[i] ;
-        if(arr[i] == 1 ) {
-            ans += n ;
-            continue;
-        }else  {
-            for (int j =0 ; j <=n && j <=30   ;j ++ ) {
-              
-                ans  ++ ;
-
-            }
-        }
-    }
-    cout << ans  << endl ;  
+    long long count=0;
+	    for(int i=1;i<=n;i++){
+	        long long x=static_cast<long long>(arr[i]);
+	        if(x==1){
+	            count+=static_cast<long long>(n);
+	        }
+	        else{
+	            long long power=1;
+	            for(int j=1;j<=n;j++){
+	                if(power>numeric_limits<long long>::max()/x){
+	                    power=numeric_limits<long long>::max();
+	                    break;
+	                }
+	                power*=x;
+	                long long y=static_cast<long long>(arr[j]);
+	                if(power<=y) count++;
+	            }
+	        }
+	    }
+	    cout<<count<<endl;
 }
 int main()
 {
