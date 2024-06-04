@@ -34,6 +34,7 @@ void solve()
       cin >> n;
       vector<int> arr(n);
       takeInput(arr, n);
+      
       int front = arr.front();
       for(int i=1;i<n ;i ++ ) {
             if(front- arr[i+1] < 0  ) {
@@ -42,7 +43,7 @@ void solve()
             }
       }
       cout <<"NO"<<endl;
-      
+
 }
 int main()
 {
