@@ -30,9 +30,3 @@ int32_t main() {
     }
     return 0;
 } 
-/**
- * Written by Ayush Vishwakarma 
- * Github: ayush-vish 
- * Codeforces: god_ayushv
- * LikedIn: ayush-vishwakarma1 
- */
