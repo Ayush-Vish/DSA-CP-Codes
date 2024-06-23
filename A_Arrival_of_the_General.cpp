@@ -14,6 +14,30 @@ bool checkSorted(vector<int> &a) { for (int i = 0; i < a.size() - 1; i++) { if (
 void solve()
 {
     // Write your greatness here
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    takeInput(a,n);
+    int min = INT_MAX;
+    int min_index = 0;
+    int max = INT_MIN;
+    int max_index = 0;
+    for(int i=0;i<n;i++){
+        if(a[i] > max){
+            max = a[i];
+            max_index = i;
+        }
+        if(a[i] <= min){
+            min = a[i];
+            min_index = i;
+        }
+    }
+    if(min_index < max_index){
+        cout<<min_index + (n - max_index - 1)<<endl;
+    }else{
+        cout<<min_index + (n - max_index - 1) - 1<<endl;
+    }
+    //cout<<min_index<<" "<<max_index<<endl;    int n;                                      
 
 }
 int32_t main()
