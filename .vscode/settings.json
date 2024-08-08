@@ -87,5 +87,7 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "cassert": "cpp"
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": false
 }

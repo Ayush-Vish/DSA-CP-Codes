@@ -9,57 +9,104 @@ const int INF = 1e18;
 int dx[] = {1, 0, -1, 0};
 int dy[] = {0, 1, 0, -1};
 int prime[1];
-bool seive(int n){memset(prime, 1, n+1);for(int i=2;i*i<n;i++)if(prime[i]==1)for(int j=i*i;j<=n;j+=i)prime[j]=0;}
-bool checkSorted(vector<int> &a) { for (int i = 0; i < a.size() - 1; i++) { if (a[i] > a[i + 1]) return false; } return true; } template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < n; i++) { T ele; cin >> ele; a[i] = ele; } } template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
+bool seive(int n)
+{
+      memset(prime, 1, n + 1);
+      for (int i = 2; i * i < n; i++)
+            if (prime[i] == 1)
+                  for (int j = i * i; j <= n; j += i)
+                        prime[j] = 0;
+}
+bool checkSorted(vector<int> &a)
+{
+      for (int i = 0; i < a.size() - 1; i++)
+      {
+            if (a[i] > a[i + 1])
+                  return false;
+      }
+      return true;
+}
+template <typename T>
+void takeInput(vector<T> &a, int n)
+{
+      for (int i = 0; i < n; i++)
+      {
+            T ele;
+            cin >> ele;
+            a[i] = ele;
+      }
+}
+template <typename T>
+void printArr(vector<T> &a)
+{
+      cout << endl;
+      for (auto it : a)
+      {
+            cout << it << " ";
+      }
+      cout << endl;
+}
 void solve()
 {
-    // Write your greatness here
-    int n ;
-    cin >> n ;
-    vector<int> arr(n );
-    takeInput(arr, n );
-    int odd= 0 ;
-    int even = 0 ;
-    int evenm = INT_MIN;
-    int oddm = INT_MIN;
+      // Write your greatness here
+      int n;
+      cin >> n;
+      vector<int> arr(n);
+      takeInput(arr, n);
+      int odd = 0;
+      int even = 0;
+      sort(arr.begin(), arr.end());
+      int maxoddi = -1;
 
-    for (int i =0 ;i <n  ;i ++ ) {
-      if(arr[i] % 2 ==0 ) {
-            even ++ ;
-            evenm = max (evenm , arr[i]);
+      for (int i = 0; i < n; i++)
+      {
+            if (arr[i] % 2 == 0)
+            {
+                  even++;
+            }
+            else
+            {
+                  odd++;
+                  maxoddi = i ;
 
-      }else {
-            odd ++;
-            oddm = max(oddm , arr[i]);
+            }
       }
-    }
-    if( even ==n  || odd ==n ) {
-      cout << 0 << endl;
-      return ;
-    }
-    if(abs(evenm - oddm) >=n) {
-      cout << abs(evenm-oddm) - n + even<<endl;
+      if(even == n || odd == n ) {
+            cout <<0 << endl;
+            return ;
 
-    }else {
+      }
+      int ans =0 ;
+      int maxi = arr[maxoddi];
 
-      cout << even<<endl;
-    }
-     
+      for (int i= 0 ;i < n ;i ++ ) {
+            if(arr[i]%2 ==0 ) { 
+                  if(arr[i]  < maxi  ) {
+                        maxi += arr[i];
+                        ans ++ ;
+
+                  }else {
+                        cout << even + 1 <<endl;
+                        return ;
+
+                  }
+            }
+      }
 
 
- 
-
+      cout << ans << endl ;
+      
 }
 int32_t main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
-    return 0;
+      ios_base::sync_with_stdio(false);
+      cin.tie(NULL);
+      cout.tie(NULL);
+      int t;
+      cin >> t;
+      while (t--)
+      {
+            solve();
+      }
+      return 0;
 }
