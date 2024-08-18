@@ -46,46 +46,27 @@ void printArr(vector<T> &a)
       }
       cout << endl;
 }
-class comp
-{
-public:
-      bool operator()(const pll &a, const pll &b)
-      {
-            if (a.first == b.first)
-            {
-                  return a.second > b.second;
-            }
-            return a.first < b.first;
-      }
-};
 void solve()
 {
       // Write your greatness here
-      int n, k;
-      cin >> n >> k;
+      int n;
+      cin >> n;
       vector<int> v(n);
-      for (int i = 0; i < n; i++)
-      {
-            cin >> v[i];
-            v[i] %= k;
-            if (v[i] == 0)
-            {
-                  v[i] = k;
+      takeInput(v, n);
+      if(n>=3 ) {
+            cout << "NO";
+
+      }else {
+            if(abs(v[0]-v[1] )  ==1 ) {
+                  cout<< "NO" ;
+
+            }else {
+                  cout << "YES";
             }
       }
 
-      vector<int> ans(n);
-      iota(ans.begin(), ans.end(), 0);
-      stable_sort(ans.begin(), end(ans), [&](int i, int j)
-                  { return v[i] > v[j]; });
-      for (int i = 0; i < ans.size(); i++)
-      {
-            cout << ans[i] + 1 << " ";
-      }
-
-      cout << endl;
+      cout <<endl;
 }
-
 int32_t main()
 {
       ios_base::sync_with_stdio(false);
