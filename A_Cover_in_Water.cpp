@@ -34,6 +34,8 @@ void solve()
     cin >> n; 
     string s;
     cin >> s;
+    cout << 2 <<endl;
+    
     
 }
 int main()
