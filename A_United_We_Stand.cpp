@@ -14,30 +14,44 @@ bool checkSorted(vector<int> &a) { for (int i = 0; i < a.size() - 1; i++) { if (
 /**
 * Author: god_ayushv
 */
-void solve(){
-    // Write your greatness here
-    int n;
+void solve()
+{
+    // Write your greatness here 
+    int n ;
     cin >> n; 
-    vector<int> v(n-1 ) ;
-    int sum =0 ;
+    vector<int> a(n) ;
+    unordered_set<int> s;
+    int one = 0 ;
+    for(int i= 0 ; i < n ;i  ++ ) {
+        cin >> a[i ] ;
+        s.insert(a[i]) ;
+        if(a[i] ==1 ) one ++ ;
 
-    for (int i=0 ;i < n-1 ; i ++ ) {
-        int ele ;
-        cin >> ele ;
-        sum = sum +  ele;
+    }
+    if(s.size() ==1 ) {
+        cout << -1 << endl;
+        return ;
+    }
+    sort(a.begin() , a.end( ) ) ;
+    int it =0;
+    while(a[it] == a[0]) {
+        it ++ ;
 
     }
 
-    if(sum >= 0) {
-        cout << - sum ;
+    cout << it <<  " "<< n-it << endl;
+    for (int i=0 ; i < it ; i++ ) {
+        cout << a[i]<< " ";
 
-    }else if (sum <0 ) {
-        cout << abs(sum) ;
     }
-    cout << endl;
 
+    cout <<endl;
+    for(int i= it ; i < n;i ++ ) {
+        cout << a[i] << " " ;
 
-    
+    }
+    cout <<endl;
+
 }
 int32_t main()
 {

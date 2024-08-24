@@ -12,32 +12,33 @@ int prime[1];
 bool seive(int n){memset(prime, 1, n+1);for(int i=2;i*i<n;i++)if(prime[i]==1)for(int j=i*i;j<=n;j+=i)prime[j]=0;}
 bool checkSorted(vector<int> &a) { for (int i = 0; i < a.size() - 1; i++) { if (a[i] > a[i + 1]) return false; } return true; } template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < n; i++) { T ele; cin >> ele; a[i] = ele; } } template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 /**
-* Author: god_ayushv
+* Author: god_ayushv 
 */
-void solve(){
+void solve()
+{
     // Write your greatness here
-    int n;
+    int n ;
     cin >> n; 
-    vector<int> v(n-1 ) ;
-    int sum =0 ;
+    vector<int> ans;
 
-    for (int i=0 ;i < n-1 ; i ++ ) {
-        int ele ;
-        cin >> ele ;
-        sum = sum +  ele;
+    for (int i =0 ;i < n ;i ++ ) {
+        int x ;
+        cin >> x;
+        if( i && ans.back() > x ) {
+            ans.push_back(1);
+
+        }
+        ans.push_back(x);
 
     }
 
-    if(sum >= 0) {
-        cout << - sum ;
+    cout << ans.size() << endl;
+    for (int i=0 ;i < ans.size() ;i ++ ) {
+        cout << ans[i] << " " ;
 
-    }else if (sum <0 ) {
-        cout << abs(sum) ;
     }
-    cout << endl;
+    cout <<endl; 
 
-
-    
 }
 int32_t main()
 {

@@ -14,30 +14,32 @@ bool checkSorted(vector<int> &a) { for (int i = 0; i < a.size() - 1; i++) { if (
 /**
 * Author: god_ayushv
 */
-void solve(){
-    // Write your greatness here
-    int n;
-    cin >> n; 
-    vector<int> v(n-1 ) ;
-    int sum =0 ;
+void solve()
+{
+    // Write your greatness here 
+    int a,b,c;
+    cin >> a >> b >> c ;
+   if(c %2 ==0 )  {
+      if(a >b ) {
+            cout << "First";
 
-    for (int i=0 ;i < n-1 ; i ++ ) {
-        int ele ;
-        cin >> ele ;
-        sum = sum +  ele;
+      }else {
+            cout << "Second";
 
-    }
+      }
+   }else {
+      if(b >a ) {
+            cout<< "Second";
 
-    if(sum >= 0) {
-        cout << - sum ;
+      }else {
+            cout << "First";
+            
+      }
+   }
 
-    }else if (sum <0 ) {
-        cout << abs(sum) ;
-    }
-    cout << endl;
+    cout <<endl;
 
 
-    
 }
 int32_t main()
 {
