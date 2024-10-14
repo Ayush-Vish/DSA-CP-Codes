@@ -19,9 +19,25 @@ void solve()
     // Write your greatness here
     int x0 , n ;
     cin >> x0 >> n ;
-    
-    
+    int d  ;
+    switch(n%4 ) {
+        case 0 :
+            d= 0 ;
+            break;
+        case 1 :
+            d= -n ;
+            break;
+        case 2:
+            d =1 ;
+            break;
+        default:
+            d= n +1 ;
+            
+    }
 
+    cout << (x0% 2 ==0 ? x0+d :x0-d);
+    cout << endl;
+     
 }
 int32_t main()
 {

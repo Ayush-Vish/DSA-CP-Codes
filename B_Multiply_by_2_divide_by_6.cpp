@@ -19,7 +19,14 @@ void solve()
     // Write your greatness here
     int n ;
     cin >> n; 
+    if(n%5 ==0 ) {
+        cout << -1 << endl;
+        return ; 
+    }
     
+
+
+
 }
 int32_t main()
 {
