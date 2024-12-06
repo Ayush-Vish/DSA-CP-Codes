@@ -14,6 +14,17 @@ bool checkSorted(vector<int> &a)
       }
       return true;
 }
+/**
+ * 
+ * int a = 0 ;
+ * for i in range(3):
+ *    int a=0;
+ *    const int n = INT_MAX;
+ *    So in this fn we have a array and we need find dp[i] where i is the index in the 
+ *    array such that It dp[i] states that max no of fruits we can store in the bucket of 
+ *    size k.  
+ */
+
 template <typename T>
 void takeInput(vector<T> &a, int n)
 {
