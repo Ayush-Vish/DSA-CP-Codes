@@ -12,11 +12,8 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 void solve(){
-    string s ;
-    cin >>s ;
-    for (int i = s.size() - 1; i >= 0; i--) {
-        
-    }
+    int k ; cin >> k ;
+
     
       
 
