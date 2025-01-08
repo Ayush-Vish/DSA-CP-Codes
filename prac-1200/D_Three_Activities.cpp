@@ -12,7 +12,45 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 void solve(){
-      
+      int n ;
+      cin >> n; 
+      vector<pair<int,int>> a(n),b(n),c(n);
+      for(int i=0 ;i < n ;i ++ ) {
+        int e;
+        cin >> e ;
+        a[i] = {e,i};
+      }
+      for(int i=0 ;i < n ;i ++ ) {
+        int e;
+        cin >> e ;
+        b[i] = {e,i};
+      }
+      for(int i=0 ;i < n ;i ++ ) {
+        int e;
+        cin >> e ;
+        c[i] = {e,i};
+      }
+      sort(a.rbegin(),a.rend());
+      sort(b.rbegin(),b.rend());
+      sort(c.rbegin(),c.rend());
+      int ans =0 ;
+
+        for(int i=0;i<3 ;i ++ ) {
+            for(int j =0 ; j <3 ;j ++ ) {
+                for(int k =0 ; k < 3 ; k ++ ) {
+                    if(a[i].second != b[j].second && b[j].second != c[k].second && c[k].second!= a[i].second) {
+                      
+                        ans=max(ans , (a[i].first + b[j].first + c[k].first));
+
+                    }
+                }
+            }
+        }
+
+        cout << ans << endl;
+
+
+    
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
