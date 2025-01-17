@@ -12,12 +12,13 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 void solve(){
-    int n ;
-    cin >> n ;
-    vector<int>a(n);
-    takeInput(a,n);
-    
-      
+      int n,a ,b ;
+      cin >> n >> a >> b;
+      if(abs(a-b)%2 ==0 ) {
+            cout << "YES" << endl;
+      } else{
+            cout << "NO" << endl;
+      }
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

@@ -12,11 +12,33 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 void solve(){
-    int n ;
-    cin >> n ;
-    vector<int>a(n);
-    takeInput(a,n);
-    
+      int n ;
+      cin >> n;
+      vector<int>a(n),b(n);
+      takeInput(a,n);
+      takeInput(b,n);
+      vector<int> v(n);
+      int cnt =0 ;
+
+      for(int i=0 ;i < n ;i ++ ) {
+            v[i] = a[i] - b[i];
+            if(v[i] <0 ) {
+                  cnt -= v[i];
+            }
+
+      }
+      bool ok = true;
+      for(int i =0 ;i < n ;i ++ ) {
+            if(v[i] <0 && cnt + v[i] >0) {
+                  ok = false;
+
+            }
+            if(v[i] >=0 && v[i]<cnt ) {
+                  ok = false;
+
+            }
+      }
+      cout << (ok ? "YES" :"NO" ) << endl;
       
 }
 int32_t main(){
