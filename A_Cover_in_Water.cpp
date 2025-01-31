@@ -10,8 +10,7 @@ bool checkSorted(vector<int> &a)
     }
     return true;
 }
-void takeInput(vector<int> &a, int n)
-{
+void takeInput(vector<int> &a, int n) {
     for (int i = 0; i < n; i++)
     {
         int ele;
@@ -19,8 +18,7 @@ void takeInput(vector<int> &a, int n)
         a[i] = ele;
     }
 }
-void printArr(vector<int> &a)
-{
+void printArr(vector<int> &a) {
     cout << endl;
     for (auto it : a)
     {
@@ -28,14 +26,13 @@ void printArr(vector<int> &a)
     }
     cout << endl;
 }
-void solve()
-{
+void solve() {
     int n;
     cin >> n; 
     string s;
     cin >> s;
     cout << 2 <<endl;
-    
+
     
 }
 int main()
