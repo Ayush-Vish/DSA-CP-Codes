@@ -12,36 +12,33 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 
+vector<vector<int>> dp;
 
 
-void solve() {
-    int a, b;
-    cin >> a >> b;
-    vector<vector<int>> dp(a + 1, vector<int>(b + 1, INT_MAX));
-    // cout << f(a, b) << endl;
-    for (int i=1 ; i <=a ; i ++ ) {
-        for(int j=1 ; j <=b ; j ++ ) {
-            if(i == j ) {
-                dp[i][j] = 0;
-            }else {
-                for(int k=1 ; k <i ; k ++ ) {
-                    dp[i][j] = min(dp[i][j],1 + dp[k][j] + dp[i-k][j]);
-                }
-                for(int k=1 ; k<j;k++ ) {
-                    dp[i][j] = min(dp[i][j], 1 + dp[i][k] + dp[i][j-k]);
-                }
-            }
-        }
-    }
-    cout << dp[a][b];
+int f(int i , int j , vector<int>&a) {
+      if(i > j) return 0;
+      if(dp[i][j] != -1 ) {
+            return dp[i][j];
+      }
+
+      int t1= a[i] + min(f(i+2 , j ,a ) , f(i+1 ,j-1 ,a )) ;
+      int t2= a[j] + min(f(i +1 , j-1  ,a ) , f(i ,j -2  ,a )) ;
+      return dp[i][j] =  max(t1,t2);
 }
 
-int32_t main() {
+
+void solve(){
+      int n ;
+      cin >> n ;
+      vector<int> a(n);
+      takeInput(a,n);
+      dp.assign(n,vector<int>(n,-1));
+      cout << f (0,n-1 ,a );
+}
+int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
-    solve();
-
+        solve();
     return 0;
 }

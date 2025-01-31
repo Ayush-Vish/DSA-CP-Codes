@@ -12,36 +12,28 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 
+void solve(){
+      int a ,b ;
+      cin >> a >> b ;
+      int cnt = (a ==1 ) ? 1 : 0 ;
+      if( b >a) {
+            int st  =max(2LL , a ) ;
+            int end = b -1 ;
+            if(end >=st) {
+                  cnt += end- st + 1; 
 
-
-void solve() {
-    int a, b;
-    cin >> a >> b;
-    vector<vector<int>> dp(a + 1, vector<int>(b + 1, INT_MAX));
-    // cout << f(a, b) << endl;
-    for (int i=1 ; i <=a ; i ++ ) {
-        for(int j=1 ; j <=b ; j ++ ) {
-            if(i == j ) {
-                dp[i][j] = 0;
-            }else {
-                for(int k=1 ; k <i ; k ++ ) {
-                    dp[i][j] = min(dp[i][j],1 + dp[k][j] + dp[i-k][j]);
-                }
-                for(int k=1 ; k<j;k++ ) {
-                    dp[i][j] = min(dp[i][j], 1 + dp[i][k] + dp[i][j-k]);
-                }
             }
-        }
-    }
-    cout << dp[a][b];
+      } 
+      cout << cnt << endl;
 }
-
-int32_t main() {
+int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
-    solve();
-
+    int t;
+    cin >> t;
+    while (t--){
+        solve();
+    }
     return 0;
 }
