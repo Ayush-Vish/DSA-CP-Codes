@@ -14,23 +14,17 @@ int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a
 void solve(){
       int n ;
       cin >> n ;
-      vector<int>a(n);
-
+      vector<int>a(n );
+      takeInput(a,n);
+      sort(a.begin( ) , a.end()) ;
+      int curr =1 ;
       for(int i=0 ;i < n ;i ++ ) {
-            cin >> a[i];
+            if(curr < a[i]) {
+                  break;
+            }
+            curr +=a[i];
       }
-      sort(a.begin() , a.end()) ;
-    int ans =0 ;
-
-      int med = a[n/2];
-      for(int i=0 ;i < n ;i ++ ) {
-        ans += abs (a[i] - med ) ;
-      }
-
-      cout << ans << endl;
-     
-
-
+      cout << curr << endl;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
