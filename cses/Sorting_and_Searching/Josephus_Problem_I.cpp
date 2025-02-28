@@ -14,25 +14,24 @@ int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a
 void solve(){
       int n ;
       cin >> n ;
-      bool ok= true;
-      for(int i=0 ;i < n ;i ++ ) {
-            int ele ;
-            cin >> ele;
-            if(ele <= max(2*i ,2*(n-i-1) )) {
-                  ok = false;
+      for(int i=1 ; i <=n ; i ++ ) {
+            if(i%2 ==0 )  {
+                  cout << i<< " ";
             }
       }
-      if(ok )            
-            cout << "YES" <<endl;
-      else 
-            cout << "NO" <<endl;
+      for(int i=1 ; i <=n ; i ++ ) {
+            if(i%2 ==1 )  {
+                  cout << i<< " ";
+            }
+      }
+
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
     int t =1 ;
-    cin >> t;
+//     cin >> t;
     while (t--){
         solve();
     }

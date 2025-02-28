@@ -14,18 +14,31 @@ int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a
 void solve(){
       int n ;
       cin >> n ;
-      bool ok= true;
-      for(int i=0 ;i < n ;i ++ ) {
-            int ele ;
-            cin >> ele;
-            if(ele <= max(2*i ,2*(n-i-1) )) {
-                  ok = false;
+      vector<int>a(n);
+      map<int,int> mpp;
+
+      for(int i=0 ; i <n ;i ++ ) {
+            cin >> a[i];
+            mpp[a[i]] ++ ;
+
+      }
+      int ans = -1 ;
+
+      for(auto it : mpp ) {
+            if(it.second  >1) {
+                  ans = it.first;
+                  break;
             }
       }
-      if(ok )            
-            cout << "YES" <<endl;
-      else 
-            cout << "NO" <<endl;
+      if(ans == -1 ) {
+            cout << ans << endl;
+
+      }else {
+            cout << 1 << endl;
+            cout << ans << endl;
+
+      }
+
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

@@ -12,20 +12,25 @@ template <typename T> void takeInput(vector<T> &a, int n) { for (int i = 0; i < 
 template <typename T> void printArr(vector<T> &a) { cout << endl; for (auto it : a) { cout << it << " "; } cout << endl; }
 int fastPow(int a, int b) { int res = 1; while (b) { if (b & 1) { res = (res * a) % mod; } a = (a * a) % mod; b >>= 1; } return res; }
 void solve(){
-      int n ;
+      int n;
       cin >> n ;
-      bool ok= true;
-      for(int i=0 ;i < n ;i ++ ) {
-            int ele ;
-            cin >> ele;
-            if(ele <= max(2*i ,2*(n-i-1) )) {
+      vector<int>a(n-2);
+      takeInput(a,n-2);
+      n=n-2;
+      bool ok = true;
+      for(int i=0 ; i < n-2  ;i ++ ) {
+            if(a[i] == 1 && a[i+1 ] == 0 && a[i+2 ] ==1 ) 
+            {
                   ok = false;
+                  cout << "NO" << endl;
+                  return;
+                  
+
             }
       }
-      if(ok )            
-            cout << "YES" <<endl;
-      else 
-            cout << "NO" <<endl;
+            cout << "YES" ;
+
+      cout <<endl;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
