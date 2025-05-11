@@ -13,9 +13,27 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+int f(vector<int> &a, int k ) {
+      int ans  =0 , n = a.size(), sum = 0 ;
+      for(int i=0 ,j =0 ;  i < n ; i ++ ) {
+            sum += a[i];
+            while(sum >= k && j < n ) {
+                  ans  += (n- i );
+                  sum -= a[j];
+                  j ++ ;
+            }
+      }
+      return ans ;
+}
+
 void solve(){
-     
-      int n ;
+      int n , k;
+      cin >> n >> k ;
+      vector<int>a(n);
+      for(int i=0 ;i < n ;i ++ ) {
+            cin >> a[i];
+      }
+      cout  << f(a , k ) - f(a , k+1 ) ;
       
 }
 int32_t main(){
@@ -24,7 +42,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-    cin >> t;
+//     cin >> t;
     while(t--){
         solve();
     }
