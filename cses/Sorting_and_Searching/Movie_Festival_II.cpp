@@ -14,30 +14,12 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-
-      int n ;
-      cin >> n ;
-      int k ;
-      cin >>  k ;
-      int a[n];
-      for(int i=0 ;i < n ;i ++ ) {
-            cin >> a[i];
+      int n , k;
+      cin >> n >> k ;
+      vector<pair<int,int>> v ;
+      for(int i=0 ; i < n ;i ++ ) {
+            cin >> v[i].first >> v[i].second;   
       }
-      int ans =0 ;
-      map<int,int> mpp;
-
-      for(int i=0,j=0 ;i < n ;i ++ ) {
-            mpp[a[i]] ++ ;
-            while(mpp.size() >k && j <=i ) {
-                  mpp[a[j]] -- ;
-                  if(mpp[a[j]] ==0 ) {
-                        mpp.erase(a[j]);
-                  }
-                  j ++ ;
-            } 
-            ans += (i - j +1  ) ;
-      }
-      cout << ans << endl;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

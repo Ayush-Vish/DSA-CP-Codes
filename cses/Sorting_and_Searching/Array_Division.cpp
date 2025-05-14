@@ -13,31 +13,44 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+bool check(int mid , int k , vector<int>&arr ) {
+      int cnt =1 ;
+      int curr =0 ;
+      for(int i=0 ;i < arr.size(); i ++ ) {
+            curr += arr[i];
+            if(curr  > mid ) {
+                  cnt ++ ;
+                  curr = arr[i];
+            }
+      }
+      cerr << "for mid = " << mid << " the cnt is "  << cnt << endl;
+      return cnt <= k ;
+}
+
 void solve(){
-
-      int n ;
-      cin >> n ;
-      int k ;
-      cin >>  k ;
-      int a[n];
-      for(int i=0 ;i < n ;i ++ ) {
+     int n,k;
+     cin >> n >> k ;
+     vector<int>a(n);
+      int sum =0 ;
+      for(int i=0 ;i <n ;i ++ ) {
             cin >> a[i];
+            sum += a[i];
+            
       }
-      int ans =0 ;
-      map<int,int> mpp;
+      int s =*max_element(a.begin(),a.end()) , e = sum , ans = 0;
+      cerr << check(8,k,a ) << endl; 
+     while( s <= e  ) {
+           int mid = s + (e-s )/2 ;
 
-      for(int i=0,j=0 ;i < n ;i ++ ) {
-            mpp[a[i]] ++ ;
-            while(mpp.size() >k && j <=i ) {
-                  mpp[a[j]] -- ;
-                  if(mpp[a[j]] ==0 ) {
-                        mpp.erase(a[j]);
-                  }
-                  j ++ ;
-            } 
-            ans += (i - j +1  ) ;
+      if(check(mid, k, a  )) {
+            ans = mid ;
+
+            e = mid -1;
+      }else {
+            s = mid +1 ;
       }
-      cout << ans << endl;
+     }
+     cout << ans << endl;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
