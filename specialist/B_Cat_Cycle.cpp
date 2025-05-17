@@ -14,31 +14,11 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    int n , k;
-    cin >> n >> k ;
-    vector<pair<int,int>> v(n) ;
-    for(int i=0 ; i < n ;i ++ ) {
-        cin >> v[i].first >> v[i].second;   
-    }
-    sort(v.begin(),v.end());
-    multiset<int> st;
-    int ans = 0 ;
-    for(int i=0 ;i < k ;i ++ ) {
-        st.insert(v[i].second);
-    }
-    for(int  i= k ; i < n ;i ++ ) {
-        auto mn = st.begin();
-        auto mx = st.rbegin();
-        if(v[i].first >= *mn) {
-            ans ++ ;
-            st.erase(mn);
-            st.insert(v[i].second);
-        }else if (v[i].second < *mx  ){
-            st.erase(st.find(*mx ));
-            st.insert(v[i].second);
-        }
-    }
-    cout << ans + st.size()<< endl;
+      int n ,k ;
+      cin >> n >> k ;
+      
+
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
@@ -46,7 +26,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-//     cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

@@ -14,31 +14,29 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    int n , k;
-    cin >> n >> k ;
-    vector<pair<int,int>> v(n) ;
-    for(int i=0 ; i < n ;i ++ ) {
-        cin >> v[i].first >> v[i].second;   
+     int n ,a,b;
+     cin >> n >> a >> b ;
+     vector<int> arr(n);
+     for(int i=0 ;i < n ;i ++ ){
+      cin >> arr[i];
+     }
+    vector<int> pre(n );
+     pre[0] = arr[0];
+     for(int i =1 ; i < n ; i ++ ) {
+        pre[i ]  = pre[i-1] + a[i];
     }
-    sort(v.begin(),v.end());
-    multiset<int> st;
-    int ans = 0 ;
-    for(int i=0 ;i < k ;i ++ ) {
-        st.insert(v[i].second);
+     int ans =INT_MIN ;
+     int curr =0  ;
+    int i;
+    for( i=0 ; i < b-a+ 1 ; i 0++ ){
+        ans = max(ans , pre[i]);
     }
-    for(int  i= k ; i < n ;i ++ ) {
-        auto mn = st.begin();
-        auto mx = st.rbegin();
-        if(v[i].first >= *mn) {
-            ans ++ ;
-            st.erase(mn);
-            st.insert(v[i].second);
-        }else if (v[i].second < *mx  ){
-            st.erase(st.find(*mx ));
-            st.insert(v[i].second);
-        }
+    for(int j=0 ; i < n ;i ++) {
+        
     }
-    cout << ans + st.size()<< endl;
+     
+
+
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

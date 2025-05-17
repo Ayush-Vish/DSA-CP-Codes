@@ -13,32 +13,41 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+int dfs(int i, int j , vector<vector<char>>&g ) {
+      int ans =0;
+
+      g[i][j] = 'v';
+      for(int k =0 ; k < 4 ; k ++ ) {
+            int nx = i + dx[k];
+            int ny = j + dy[k];
+            if(nx >=0 && ny >= 0 && nx <g.size()&& ny < g[0].size() && g[nx][ny] != 'v' && g[nx][ny] == '.' ) {
+                  ans += dfs(nx ,ny , g );
+
+            }
+      }
+      return ans ;
+}
+
 void solve(){
-    int n , k;
-    cin >> n >> k ;
-    vector<pair<int,int>> v(n) ;
-    for(int i=0 ; i < n ;i ++ ) {
-        cin >> v[i].first >> v[i].second;   
-    }
-    sort(v.begin(),v.end());
-    multiset<int> st;
-    int ans = 0 ;
-    for(int i=0 ;i < k ;i ++ ) {
-        st.insert(v[i].second);
-    }
-    for(int  i= k ; i < n ;i ++ ) {
-        auto mn = st.begin();
-        auto mx = st.rbegin();
-        if(v[i].first >= *mn) {
-            ans ++ ;
-            st.erase(mn);
-            st.insert(v[i].second);
-        }else if (v[i].second < *mx  ){
-            st.erase(st.find(*mx ));
-            st.insert(v[i].second);
-        }
-    }
-    cout << ans + st.size()<< endl;
+      int n ,m ;
+      cin >> n >> m ;
+      vector<vector<char>> g(n , vector<char>(m));
+      for(int i=0 ;i < n ;i ++ ) {
+            for(int j=0 ; j < m ; j ++ ) {
+                  cin >> g[i][j];
+            }
+      }
+      int ans =0 ;
+      for(int i=0 ;i < n; i ++ ) {
+            for(int j =0 ; j < m  ;j ++ ){
+                  if(g[i][j] == '.' && g[i][j] != 'v'){
+                        ans ++ ;
+                        dfs(i,j,g);
+                  }
+            }
+      }
+      cout << ans << endl;
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

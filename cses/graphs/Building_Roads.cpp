@@ -13,32 +13,41 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+void dfs(int src , vector<int>adj[] , vector<int>&vis ) {
+      vis[src ] = 1 ;
+      for(auto it : adj[src] ){
+            if(vis[it] == 0 ) {
+
+                  dfs(it , adj , vis );
+            } 
+      }
+}
+
 void solve(){
-    int n , k;
-    cin >> n >> k ;
-    vector<pair<int,int>> v(n) ;
-    for(int i=0 ; i < n ;i ++ ) {
-        cin >> v[i].first >> v[i].second;   
-    }
-    sort(v.begin(),v.end());
-    multiset<int> st;
-    int ans = 0 ;
-    for(int i=0 ;i < k ;i ++ ) {
-        st.insert(v[i].second);
-    }
-    for(int  i= k ; i < n ;i ++ ) {
-        auto mn = st.begin();
-        auto mx = st.rbegin();
-        if(v[i].first >= *mn) {
-            ans ++ ;
-            st.erase(mn);
-            st.insert(v[i].second);
-        }else if (v[i].second < *mx  ){
-            st.erase(st.find(*mx ));
-            st.insert(v[i].second);
-        }
-    }
-    cout << ans + st.size()<< endl;
+      int city , roads;
+      cin >> city >> roads;
+      vector<int> adj[city +1 ];
+      for(int  i=0 ;i < roads ; i ++ ) {
+            int u,v;
+            cin >> u >> v ;
+
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+      }
+      vector<int> compo;
+      vector<int> vis(city +1 );
+      for(int i=1 ;i <= city ; i ++ ) {
+            if(!vis[i]  ) {
+                  compo.push_back(i);
+                  dfs(i,adj,vis);
+            }
+      }
+      cout << compo.size() -1  << endl;
+      for(int i=0 ; i < compo.size() - 1 ; i ++ ) {
+            cout << compo[i] << " " << compo[i+1] << endl; 
+      }
+      
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
