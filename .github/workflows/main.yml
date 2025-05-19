@@ -3,6 +3,8 @@ name: Update README with Folder Structure
 on:
   push:
     branches: [main]  # Change this if your branch is named differently
+permissions:
+  contents: write
 
 jobs:
   update-readme:
