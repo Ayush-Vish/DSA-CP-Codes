@@ -2,36 +2,35 @@ name: Update README with Folder Structure
 
 on:
   push:
-    branches: [main] # Change this to your default branch name if it's different
+    branches: [main]  # Change this if your branch is named differently
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Generate directory tree
         run: |
-          echo "Well this repo contains my DSA and CP Code."
           echo "## 📁 Project Structure" > README.md
           echo "\`\`\`" >> README.md
-          tree -I '.git|.github|README.md|node_modules' -L 5 >> README.md
+          tree -I '.git|.github|README.md|node_modules' -L 2 >> README.md
           echo "\`\`\`" >> README.md
 
       - name: Commit and push if README changed
         env:
           TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
+          git config --global user.name "Ayush-Vish Bot"
+          git config --global user.email "bot@ayushvish.dev"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+          
           if ! git diff --quiet README.md; then
             git add README.md
             git commit -m "📝 Auto-update README with latest folder structure"
-            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+            git push origin HEAD:main
           else
             echo "No changes to commit"
           fi
-
