@@ -1,26 +1,167 @@
-name: Update README with Folder Structure
-
+name: Update Interactive README
 on:
   push:
     branches: [main]  # Change this if your branch is named differently
 permissions:
   contents: write
-
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Generate directory tree
+        with:
+          fetch-depth: 0  # Fetch all history to properly detect changes
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Generate interactive README
         run: |
-          echo "## 📁 Project Structure" > README.md
-          echo "\`\`\`" >> README.md
-          tree -I '.git|.github|README.md|node_modules' -L 2 >> README.md
-          echo "\`\`\`" >> README.md
-
+          # Create a new README.md
+          echo "# DSA-CP-Codes" > README.md
+          echo "This repository contains Data Structures, Algorithms, and Competitive Programming code examples." >> README.md
+          echo "" >> README.md
+          echo "## 📁 Interactive Project Structure" >> README.md
+          echo "" >> README.md
+          
+          # Get list of directories and files and generate the interactive structure
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            const crypto = require("crypto");
+            
+            // Function to generate a reproducible ID for HTML elements
+            function generateId(str) {
+              return crypto.createHash("md5").update(str).digest("hex").substring(0, 8);
+            }
+            
+            // Ignore these directories/files
+            const ignoreList = [
+              ".git", ".github", "node_modules", "README.md", 
+              ".gitignore", "package-lock.json", "package.json"
+            ];
+            
+            // Create the interactive tree structure
+            function createTreeMarkdown(dir, prefix = "") {
+              let result = "";
+              
+              try {
+                const items = fs.readdirSync(dir)
+                  .filter(item => !ignoreList.includes(item))
+                  .sort((a, b) => {
+                    // Sort directories first, then files
+                    const aIsDir = fs.statSync(path.join(dir, a)).isDirectory();
+                    const bIsDir = fs.statSync(path.join(dir, b)).isDirectory();
+                    
+                    if (aIsDir && !bIsDir) return -1;
+                    if (!aIsDir && bIsDir) return 1;
+                    return a.localeCompare(b);
+                  });
+                
+                for (const item of items) {
+                  const itemPath = path.join(dir, item);
+                  const itemStats = fs.statSync(itemPath);
+                  const relativePath = path.relative(".", itemPath).replace(/\\/g, "/");
+                  const itemId = generateId(relativePath);
+                  
+                  if (itemStats.isDirectory()) {
+                    // Directory - create a details element
+                    result += `${prefix}<details id="${itemId}">\n`;
+                    result += `${prefix}<summary>📂 <strong>${item}</strong></summary>\n\n`;
+                    result += createTreeMarkdown(itemPath, prefix + "  ");
+                    result += `${prefix}</details>\n\n`;
+                  } else {
+                    // File - create a link to the file
+                    const fileIcon = getFileIcon(item);
+                    result += `${prefix}${fileIcon} [${item}](${relativePath})\n\n`;
+                  }
+                }
+              } catch (err) {
+                console.error(`Error processing directory ${dir}:`, err);
+              }
+              
+              return result;
+            }
+            
+            // Get appropriate icon for file type
+            function getFileIcon(filename) {
+              const ext = path.extname(filename).toLowerCase();
+              
+              const icons = {
+                ".js": "📄 JavaScript:",
+                ".ts": "📄 TypeScript:",
+                ".jsx": "📄 React JSX:",
+                ".tsx": "📄 React TSX:",
+                ".py": "🐍 Python:",
+                ".java": "☕ Java:",
+                ".c": "📄 C:",
+                ".cpp": "📄 C++:",
+                ".h": "📑 Header:",
+                ".html": "🌐 HTML:",
+                ".css": "🎨 CSS:",
+                ".json": "📋 JSON:",
+                ".md": "📝 Markdown:",
+                ".yml": "⚙️ YAML:",
+                ".yaml": "⚙️ YAML:",
+                ".txt": "📄 Text:",
+                ".pdf": "📕 PDF:",
+                ".png": "🖼️ PNG:",
+                ".jpg": "🖼️ JPEG:",
+                ".jpeg": "🖼️ JPEG:",
+                ".gif": "🖼️ GIF:",
+                ".svg": "🖼️ SVG:",
+                ".go": "🐹 Go:",
+                ".rb": "💎 Ruby:",
+                ".php": "🐘 PHP:",
+                ".rs": "🦀 Rust:",
+                ".sh": "💻 Shell:",
+                ".bat": "💻 Batch:",
+                ".ps1": "💻 PowerShell:",
+                ".sql": "🗃️ SQL:",
+                ".cs": "🔷 C#:",
+                ".swift": "🔶 Swift:",
+                ".kt": "🔷 Kotlin:",
+                ".dart": "🎯 Dart:",
+                ".scala": "🔶 Scala:",
+                ".r": "📊 R:"
+              };
+              
+              return icons[ext] || "📄";
+            }
+            
+            const result = createTreeMarkdown(".");
+            fs.appendFileSync("README.md", result);
+            
+            // Add some custom CSS for better looks
+            const css = `
+            <style>
+            details {
+              margin-left: 20px;
+            }
+            summary {
+              cursor: pointer;
+              margin-bottom: 5px;
+            }
+            summary:hover {
+              color: #0366d6;
+            }
+            a {
+              margin-left: 40px;
+              display: inline-block;
+              text-decoration: none;
+            }
+            a:hover {
+              text-decoration: underline;
+            }
+            </style>
+            `;
+            
+            fs.appendFileSync("README.md", "\n\n" + css);
+          '
+          
       - name: Commit and push if README changed
         env:
           TOKEN: ${{ secrets.GH_PAT }}
@@ -31,7 +172,7 @@ jobs:
           
           if ! git diff --quiet README.md; then
             git add README.md
-            git commit -m "📝 Auto-update README with latest folder structure"
+            git commit -m "📝 Auto-update README with interactive folder structure"
             git push origin HEAD:main
           else
             echo "No changes to commit"
