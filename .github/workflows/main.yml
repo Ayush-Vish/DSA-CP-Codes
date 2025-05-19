@@ -21,6 +21,8 @@ jobs:
           echo "\`\`\`" >> README.md
 
       - name: Commit and push if README changed
+        env:
+          TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -28,7 +30,8 @@ jobs:
           if ! git diff --quiet README.md; then
             git add README.md
             git commit -m "📝 Auto-update README with latest folder structure"
-            git push
+            git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           else
             echo "No changes to commit"
           fi
+
