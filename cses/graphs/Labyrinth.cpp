@@ -21,7 +21,6 @@ bool visited[mxi][mxi];
 pair<int,int> par[mxi][mxi];
 char dir[mxi][mxi];
 
-
 bool bfs() {
     queue<pair<int,int>> q ;
     q.push(st);

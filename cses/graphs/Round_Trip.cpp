@@ -13,58 +13,64 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
-pll ans ;
-vector<int> vis;
-
-bool bfs(int src , vector<int> &parent, vector<int>adj[]) {
-  queue<pll> q;
-  vis[src]  =1 ;
-
-  q.push({src,1});
-  while(!q.empty()) {
-    auto p = q.front();
-    int neigh = p.first;
-    int dep = p.second;
-
-    for(auto it : adj[neigh]) {
-      if(vis[it] ==0 ) {
-        vis[it] = 1;
-        parent[it ] = src;
-        q.push({it , dep +1 });
-      }else if (vis[it ] == 1) {
-        ans = {neigh, dep +1 };
-        return true;
-      }
+int dfs(int src ,int parent ,  vector<int>adj[] , vector<int>&vis , vector<int>&path , int &start) {
+    vis[src] = 1 ;
+    path.push_back(src);
+    for(auto it : adj[src]) {
+        if(!vis[it]  ) {
+            if( dfs(it ,src, adj,vis,path ,start)) return true;;
+        }else if(it != parent) {
+            path.push_back(it);
+            start = it;
+            return true;
+        }
     }
-  }
-  return false;
+    path.pop_back();
+    return false;
+
 }
 
 void solve(){
-    int n , m ;
+    int n,m;
     cin >> n >> m ;
-    vector<int> adj[n];
-    for(int i=0 ;i < m ;i ++ ) {
-      int u,v;
-      cin >> u >> v ;
-      adj[u].push_back(v);
-      adj[v].push_back(u);
 
-    } 
-    vis.resize(n +1 , 0 );
+    vector<int>adj[n+1];
+    for(int i=0; i < m ; i ++ ) {
+        int u ,v ;
+        cin >> u >> v; 
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }    
+    vector<int> vis(n+1 ) ;
 
-    vector<int> parent(n +1,0 );
-    
-    for(int i=1 ; i<= n ;i++){
-      if(!vis[i]) {
-        bool ok = bfs(i ,parent , adj );
-        cout << ans.second << endl;
-        int curr = ans.first;
-        
-      }
+    for(int i=1 ;i<=n ;i ++ ) {
+        if(!vis[i]) {
+            vector<int> path;
+            int start = 0 ;
+            
+            if(dfs(i,-1, adj,vis,path,start)) {
+                vector<int> ans ;
+                for(int j =path.size() -1 ; j >=0; j -- ) {
+                    ans.push_back(path[j]);
+                    if(path[j] == start && ans.size() > 1 ) {
+                        break; 
+
+                    }
+                    
+                }
+                reverse(ans.begin(),ans.end());
+                cout << ans.size() << endl;
+                for(auto it : ans ) {
+                    cout << it << " ";
+                }
+                return ;
+
+            }
+        }
     }
-    cout << "IMPOSSIBLE" << endl;
-    return;
+    cout << "IMPOSSIBLE";
+
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
@@ -72,7 +78,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-//     cin >> t;
+    // cin >> t;
     while(t--){
         solve();
     }

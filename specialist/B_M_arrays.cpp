@@ -14,14 +14,7 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-      int n ,k ;
-      cin >> n >> k ;
-      k -- ;
-
-      int f = n/2 ;
-
-      cout << (k + (n%2 )*(k/f)) % n +1 << endl;
-
+    
      
 }
 int32_t main(){

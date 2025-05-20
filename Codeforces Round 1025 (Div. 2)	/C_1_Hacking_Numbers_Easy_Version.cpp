@@ -13,17 +13,35 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
-void solve(){
-      int n ,k ;
-      cin >> n >> k ;
-      k -- ;
 
-      int f = n/2 ;
-
-      cout << (k + (n%2 )*(k/f)) % n +1 << endl;
-
-     
+int sendCommand( string cmd) {
+    cout << cmd << endl;
+    cout.flush();
+    int response;
+    cin >> response;
+    if (response == -1) exit(0); 
+    return response;
 }
+
+void solve(){
+    int n;
+    cin >> n;
+
+    sendCommand("mul 9");
+    sendCommand("digit");
+    sendCommand("digit");
+    n = n - 9 ;
+    string s = to_string(n);
+
+    sendCommand("add " + s );
+
+    cout << "!" << endl;
+    cout.flush();
+    int v;
+    cin >> v;
+    if (v == -1) exit(0); 
+}
+
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

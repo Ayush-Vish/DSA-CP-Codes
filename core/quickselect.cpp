@@ -13,15 +13,15 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+int f(int a[]  ) {
+
+      
+}
+
 void solve(){
-      int n ,k ;
-      cin >> n >> k ;
-      k -- ;
-
-      int f = n/2 ;
-
-      cout << (k + (n%2 )*(k/f)) % n +1 << endl;
-
+      int n = 6 ;
+      int a[] = {3,2,1,6,3,5};
+      int median = f(a);
      
 }
 int32_t main(){
@@ -30,7 +30,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-    cin >> t;
+//     cin >> t;
     while(t--){
         solve();
     }

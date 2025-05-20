@@ -14,15 +14,14 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-      int n ,k ;
-      cin >> n >> k ;
-      k -- ;
-
-      int f = n/2 ;
-
-      cout << (k + (n%2 )*(k/f)) % n +1 << endl;
-
-     
+      int n,m,a,b;
+      cin >> n >> m >> a >> b ;
+      int ans = INT_MAX;
+      ans = min(ans,(int)ceil(log2(b))+(int)ceil(log2(n)));
+      ans = min(ans,(int)ceil(log2(a))+(int)ceil(log2(m)));
+      ans = min(ans,(int)ceil(log2(m-b +1 ))+(int)ceil(log2(n)));
+      ans = min(ans,(int)ceil(log2(n- a +1 ))+(int)ceil(log2(m)));
+      cout << ans +1  << endl;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

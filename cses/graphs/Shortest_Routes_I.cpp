@@ -12,16 +12,26 @@ vector<int> seive(int n) { vector<int> prime(n+1, 1); for(int i=2; i*i<=n; i++) 
 template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i++) { T ele; cin>>ele; a[i]=ele; } }
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
+int n,m ;
 
 void solve(){
-      int n ,k ;
-      cin >> n >> k ;
-      k -- ;
+      cin >> n >> m;
+      vector<vector<int>> adj[n +1 ];
+      for(int i=0 ;i < m ; i ++ ) {
+            int a,b,c;cin >> a >> b >> c ;
+            adj[a].push_back({b,c});
+            adj[b].push_back({a,c});
+      }
+      vector<int> ans (n +1 , INF);
+      ans[1] = 0 ;
 
-      int f = n/2 ;
+      priority_queue<pll,vector<pll>,greater<pll>> pq ;
+      pq.push({0,1});
+      while(!pq.empty()) {
+            auto top = pq.top();pq.pop();
+            
 
-      cout << (k + (n%2 )*(k/f)) % n +1 << endl;
-
+      }
      
 }
 int32_t main(){
@@ -30,7 +40,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-    cin >> t;
+//     cin >> t;
     while(t--){
         solve();
     }
