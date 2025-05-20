@@ -1,0 +1,176 @@
+name: Update Interactive README
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate README
+        run: |
+          cat > README.md << 'EOL'
+          <div align="center">
+          
+          # 🚀 DSA-CP-Codes
+          
+          ![GitHub last commit](https://img.shields.io/github/last-commit/Ayush-Vish/DSA-CP-Codes)
+          ![GitHub repo size](https://img.shields.io/github/repo-size/Ayush-Vish/DSA-CP-Codes)
+          [![GitHub stars](https://img.shields.io/github/stars/Ayush-Vish/DSA-CP-Codes)](https://github.com/Ayush-Vish/DSA-CP-Codes/stargazers)
+          
+          </div>
+          
+          <p align="center">A collection of Data Structures, Algorithms, and Competitive Programming solutions.</p>
+          
+          <hr>
+          
+          ## 📁 Project Structure
+          
+          <details open>
+          <summary><b>🗂️ Directory Explorer</b></summary>
+          <div id="directory-explorer">
+          
+          EOL
+          
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            
+            const repoUrl = "https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main";
+            const ignoreList = [".git", ".github", "node_modules", "README.md", ".gitignore"];
+            
+            function getLanguage(filename) {
+              const ext = path.extname(filename).toLowerCase();
+              const langMap = { ".js": "javascript", ".py": "python", ".java": "java", ".cpp": "cpp", ".c": "c" };
+              return langMap[ext] || "";
+            }
+            
+            function getFileIcon(filename) {
+              const ext = path.extname(filename).toLowerCase();
+              const icons = { ".js": "⚡", ".py": "🐍", ".java": "☕", ".cpp": "🔥", ".c": "🔍" };
+              return icons[ext] || "📄";
+            }
+            
+            function getCodePreview(filePath, maxLines = 5) {
+              try {
+                if (fs.statSync(filePath).size > 10000) return "";
+                const content = fs.readFileSync(filePath, "utf8");
+                return content.split("\n").slice(0, maxLines).join("\n");
+              } catch (err) {
+                return "";
+              }
+            }
+            
+            function createTreeMarkdown(dir, prefix = "", level = 0) {
+              let result = "";
+              const items = fs.readdirSync(dir)
+                .filter(item => !ignoreList.includes(item))
+                .sort((a, b) => {
+                  const aIsDir = fs.statSync(path.join(dir, a)).isDirectory();
+                  const bIsDir = fs.statSync(path.join(dir, b)).isDirectory();
+                  return aIsDir && !bIsDir ? -1 : !aIsDir && bIsDir ? 1 : a.localeCompare(b);
+                });
+              
+              for (const item of items) {
+                const itemPath = path.join(dir, item);
+                const relativePath = path.relative(".", itemPath).replace(/\\/g, "/");
+                
+                if (fs.statSync(itemPath).isDirectory()) {
+                  const dirCount = fs.readdirSync(itemPath).filter(i => !ignoreList.includes(i)).length;
+                  result += `${prefix}<details${level === 0 ? " open" : ""} class="dir-details">\n`;
+                  result += `${prefix}  <summary><span class="dir-icon">📂</span> ${item} (${dirCount} items)</summary>\n`;
+                  result += `${prefix}  <div class="dir-container">\n`;
+                  result += createTreeMarkdown(itemPath, prefix + "  ", level + 1);
+                  result += `${prefix}  </div>\n`;
+                  result += `${prefix}</details>\n\n`;
+                } else {
+                  const fileIcon = getFileIcon(item);
+                  const fileSize = (fs.statSync(itemPath).size / 1024).toFixed(1);
+                  const gitHubLink = `${repoUrl}/${relativePath}`;
+                  const language = getLanguage(item);
+                  const preview = getCodePreview(itemPath);
+                  
+                  result += `${prefix}<div class="file-item">\n`;
+                  result += `${prefix}  <span class="file-icon">${fileIcon}</span> `;
+                  result += `<a href="${gitHubLink}" target="_blank">${item}</a> (${fileSize} KB)\n`;
+                  if (preview && language) {
+                    result += `${prefix}  <details class="preview-details">\n`;
+                    result += `${prefix}    <summary>Preview</summary>\n`;
+                    result += `${prefix}    \`\`\`${language}\n${preview}\n...\n\`\`\`\n`;
+                    result += `${prefix}  </details>\n`;
+                  }
+                  result += `${prefix}</div>\n\n`;
+                }
+              }
+              return result || `${prefix}<div class="empty-dir">Empty directory</div>\n\n`;
+            }
+            
+            fs.appendFileSync("README.md", createTreeMarkdown("."));
+          '
+          
+          cat >> README.md << 'EOL'
+          </div>
+          </details>
+          
+          <hr>
+          
+          ## 🔍 How to Navigate
+          
+          - Click 📂 to expand/collapse directories
+          - Click file names to view code on GitHub
+          - Expand previews for code snippets
+          
+          <hr>
+          
+          <div align="center">
+            <p>⭐ Star this repo if it's helpful! ⭐</p>
+            <p>Generated on $(date '+%B %d, %Y')</p>
+          </div>
+          
+          <style>
+            #directory-explorer {
+              background: #f6f8fa;
+              border: 1px solid #e1e4e8;
+              border-radius: 6px;
+              padding: 10px;
+              max-height: 80vh;
+              overflow-y: auto;
+            }
+            .dir-details { margin: 5px 0; }
+            summary { cursor: pointer; display: flex; align-items: center; padding: 5px; }
+            .dir-icon { margin-right: 8px; }
+            .dir-container { margin-left: 20px; border-left: 1px solid #e1e4e8; }
+            .file-item { margin: 5px 0 5px 20px; }
+            .file-icon { margin-right: 8px; }
+            a { color: #0366d6; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            .preview-details { margin-left: 28px; }
+            .empty-dir { color: #586069; font-style: italic; }
+          </style>
+          EOL
+
+      - name: Commit and push
+        env:
+          TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+          if ! git diff --quiet README.md; then
+            git add README.md
+            git commit -m "Update interactive README"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
