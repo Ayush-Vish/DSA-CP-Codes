@@ -1,7 +1,7 @@
-name: Update Super Cool Interactive README
+name: Update Interactive README
 on:
   push:
-    branches: [main]  # Change this if your branch is named differently
+    branches: [main]
 permissions:
   contents: write
 jobs:
@@ -9,18 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history to properly detect changes
-          
+          fetch-depth: 0
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
-          
-      - name: Generate interactive README
+          node-version: '20'
+
+      - name: Generate README
         run: |
-          # Create a new README.md
           cat > README.md << 'EOL'
           <div align="center">
           
@@ -29,255 +28,97 @@ jobs:
           ![GitHub last commit](https://img.shields.io/github/last-commit/Ayush-Vish/DSA-CP-Codes)
           ![GitHub repo size](https://img.shields.io/github/repo-size/Ayush-Vish/DSA-CP-Codes)
           [![GitHub stars](https://img.shields.io/github/stars/Ayush-Vish/DSA-CP-Codes)](https://github.com/Ayush-Vish/DSA-CP-Codes/stargazers)
-          [![GitHub forks](https://img.shields.io/github/forks/Ayush-Vish/DSA-CP-Codes)](https://github.com/Ayush-Vish/DSA-CP-Codes/network)
-          [![GitHub issues](https://img.shields.io/github/issues/Ayush-Vish/DSA-CP-Codes)](https://github.com/Ayush-Vish/DSA-CP-Codes/issues)
           
           </div>
           
-          <p align="center">
-            A comprehensive collection of Data Structures, Algorithms, and Competitive Programming code examples.
-            <br>
-            <i>Organized for clarity and learning.</i>
-          </p>
-          
-          <hr>
-          
-          <details open>
-          <summary>📋 <b>Table of Contents</b></summary>
-          <br>
-          
-          * [💻 About This Repository](#-about-this-repository)
-          * [📁 Project Structure](#-project-structure)
-          * [🔍 How to Navigate](#-how-to-navigate)
-          * [🌟 Featured Topics](#-featured-topics)
-          * [📈 Learning Path](#-learning-path)
-          
-          </details>
-          
-          <hr>
-          
-          ## 💻 About This Repository
-          
-          This repository contains implementations of various data structures, algorithms, and competitive programming problem solutions. Use it as a reference while learning DSA concepts or preparing for coding interviews and competitions.
-          
-          > 💡 **Tip**: Click on folders to expand them and see their contents. Click on file names to view the code.
+          <p align="center">A collection of Data Structures, Algorithms, and Competitive Programming solutions.</p>
           
           <hr>
           
           ## 📁 Project Structure
           
           <details open>
-          <summary><b>🗂️ Interactive Directory Explorer</b></summary>
+          <summary><b>🗂️ Directory Explorer</b></summary>
           <div id="directory-explorer">
           
           EOL
           
-          # Run the Node.js script to generate the tree structure
           node -e '
             const fs = require("fs");
             const path = require("path");
-            const crypto = require("crypto");
             
-            // Get the GitHub repo URL
-            const repoUrl = "https://github.com/Ayush-Vish/DSA-CP-Codes";
-            const repoBlobUrl = "https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main";
+            const repoUrl = "https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main";
+            const ignoreList = [".git", ".github", "node_modules", "README.md", ".gitignore"];
             
-            // Function to generate a reproducible ID for HTML elements
-            function generateId(str) {
-              return crypto.createHash("md5").update(str).digest("hex").substring(0, 8);
-            }
-            
-            // Ignore these directories/files
-            const ignoreList = [
-              ".git", ".github", "node_modules", "README.md", 
-              ".gitignore", "package-lock.json", "package.json",
-              ".DS_Store", ".env", ".vscode"
-            ];
-            
-            // Get file extension for syntax highlighting
             function getLanguage(filename) {
               const ext = path.extname(filename).toLowerCase();
-              const langMap = {
-                ".js": "javascript",
-                ".ts": "typescript",
-                ".jsx": "jsx",
-                ".tsx": "tsx",
-                ".py": "python",
-                ".java": "java",
-                ".c": "c",
-                ".cpp": "cpp",
-                ".h": "cpp",
-                ".html": "html",
-                ".css": "css",
-                ".json": "json",
-                ".md": "markdown",
-                ".yml": "yaml",
-                ".yaml": "yaml",
-                ".go": "go",
-                ".rb": "ruby",
-                ".php": "php",
-                ".rs": "rust",
-                ".sh": "bash",
-                ".sql": "sql",
-                ".cs": "csharp",
-                ".swift": "swift",
-                ".kt": "kotlin",
-                ".scala": "scala",
-                ".r": "r"
-              };
+              const langMap = { ".js": "javascript", ".py": "python", ".java": "java", ".cpp": "cpp", ".c": "c" };
               return langMap[ext] || "";
             }
             
-            // Get appropriate icon for file type with animated style
             function getFileIcon(filename) {
               const ext = path.extname(filename).toLowerCase();
-              
-              const icons = {
-                ".js": "⚡ JavaScript",
-                ".ts": "💪 TypeScript",
-                ".jsx": "⚛️ React JSX",
-                ".tsx": "⚛️ React TSX",
-                ".py": "🐍 Python",
-                ".java": "☕ Java",
-                ".c": "🔍 C",
-                ".cpp": "🔥 C++",
-                ".h": "📑 Header",
-                ".html": "🌐 HTML",
-                ".css": "🎨 CSS",
-                ".json": "📋 JSON",
-                ".md": "📝 Markdown",
-                ".yml": "⚙️ YAML",
-                ".yaml": "⚙️ YAML",
-                ".txt": "📄 Text",
-                ".pdf": "📕 PDF",
-                ".png": "🖼️ PNG",
-                ".jpg": "🖼️ JPEG",
-                ".jpeg": "🖼️ JPEG",
-                ".gif": "🖼️ GIF",
-                ".svg": "🖼️ SVG",
-                ".go": "🐹 Go",
-                ".rb": "💎 Ruby",
-                ".php": "🐘 PHP",
-                ".rs": "🦀 Rust",
-                ".sh": "💻 Shell",
-                ".bat": "💻 Batch",
-                ".ps1": "💻 PowerShell",
-                ".sql": "🗃️ SQL",
-                ".cs": "🔷 C#",
-                ".swift": "🔶 Swift",
-                ".kt": "🔷 Kotlin",
-                ".dart": "🎯 Dart",
-                ".scala": "🔶 Scala",
-                ".r": "📊 R"
-              };
-              
-              return icons[ext] || "📄 File";
+              const icons = { ".js": "⚡", ".py": "🐍", ".java": "☕", ".cpp": "🔥", ".c": "🔍" };
+              return icons[ext] || "📄";
             }
             
-            // Function to get code preview snippet
             function getCodePreview(filePath, maxLines = 5) {
               try {
-                if (fs.statSync(filePath).size > 10000) {
-                  return ""; // Skip preview for large files
-                }
-                
+                if (fs.statSync(filePath).size > 10000) return "";
                 const content = fs.readFileSync(filePath, "utf8");
-                const lines = content.split("\n").slice(0, maxLines);
-                
-                if (lines.length > 0) {
-                  return lines.join("\n");
-                }
-                return "";
+                return content.split("\n").slice(0, maxLines).join("\n");
               } catch (err) {
                 return "";
               }
             }
             
-            // Create the interactive tree structure
             function createTreeMarkdown(dir, prefix = "", level = 0) {
               let result = "";
+              const items = fs.readdirSync(dir)
+                .filter(item => !ignoreList.includes(item))
+                .sort((a, b) => {
+                  const aIsDir = fs.statSync(path.join(dir, a)).isDirectory();
+                  const bIsDir = fs.statSync(path.join(dir, b)).isDirectory();
+                  return aIsDir && !bIsDir ? -1 : !aIsDir && bIsDir ? 1 : a.localeCompare(b);
+                });
               
-              try {
-                const items = fs.readdirSync(dir)
-                  .filter(item => !ignoreList.includes(item))
-                  .sort((a, b) => {
-                    // Sort directories first, then files
-                    const aIsDir = fs.statSync(path.join(dir, a)).isDirectory();
-                    const bIsDir = fs.statSync(path.join(dir, b)).isDirectory();
-                    
-                    if (aIsDir && !bIsDir) return -1;
-                    if (!aIsDir && bIsDir) return 1;
-                    return a.localeCompare(b);
-                  });
+              for (const item of items) {
+                const itemPath = path.join(dir, item);
+                const relativePath = path.relative(".", itemPath).replace(/\\/g, "/");
                 
-                if (items.length === 0) {
-                  return `${prefix}<div class="empty-dir">This directory is empty</div>\n\n`;
-                }
-                
-                for (const item of items) {
-                  const itemPath = path.join(dir, item);
-                  const itemStats = fs.statSync(itemPath);
-                  const relativePath = path.relative(".", itemPath).replace(/\\/g, "/");
-                  const itemId = generateId(relativePath);
+                if (fs.statSync(itemPath).isDirectory()) {
+                  const dirCount = fs.readdirSync(itemPath).filter(i => !ignoreList.includes(i)).length;
+                  result += `${prefix}<details${level === 0 ? " open" : ""} class="dir-details">\n`;
+                  result += `${prefix}  <summary><span class="dir-icon">📂</span> ${item} (${dirCount} items)</summary>\n`;
+                  result += `${prefix}  <div class="dir-container">\n`;
+                  result += createTreeMarkdown(itemPath, prefix + "  ", level + 1);
+                  result += `${prefix}  </div>\n`;
+                  result += `${prefix}</details>\n\n`;
+                } else {
+                  const fileIcon = getFileIcon(item);
+                  const fileSize = (fs.statSync(itemPath).size / 1024).toFixed(1);
+                  const gitHubLink = `${repoUrl}/${relativePath}`;
+                  const language = getLanguage(item);
+                  const preview = getCodePreview(itemPath);
                   
-                  if (itemStats.isDirectory()) {
-                    // Directory - create a details element with hover card
-                    const dirCount = fs.readdirSync(itemPath).filter(i => !ignoreList.includes(i)).length;
-                    
-                    result += `${prefix}<details id="${itemId}" class="dir-details ${level === 0 ? "root-dir" : ""}">\n`;
-                    result += `${prefix}<summary class="dir-summary">\n`;
-                    result += `${prefix}  <span class="dir-icon">📂</span>\n`;
-                    result += `${prefix}  <span class="dir-name">${item}</span>\n`;
-                    result += `${prefix}  <span class="dir-count">(${dirCount} item${dirCount !== 1 ? "s" : ""})</span>\n`;
-                    result += `${prefix}</summary>\n\n`;
-                    result += `${prefix}<div class="dir-container">\n`;
-                    result += createTreeMarkdown(itemPath, prefix + "  ", level + 1);
-                    result += `${prefix}</div>\n`;
-                    result += `${prefix}</details>\n\n`;
-                  } else {
-                    // File - create a link with extra metadata and preview
-                    const fileIcon = getFileIcon(item);
-                    const fileSize = (itemStats.size / 1024).toFixed(1);
-                    const gitHubLink = `${repoBlobUrl}/${relativePath}`;
-                    const language = getLanguage(item);
-                    const preview = getCodePreview(itemPath);
-                    
-                    result += `${prefix}<div class="file-item" id="${itemId}">\n`;
-                    result += `${prefix}  <div class="file-header">\n`;
-                    result += `${prefix}    <span class="file-icon">${fileIcon.split(" ")[0]}</span>\n`;
-                    result += `${prefix}    <a href="${gitHubLink}" class="file-name" target="_blank">${item}</a>\n`;
-                    result += `${prefix}    <span class="file-meta">${fileSize} KB</span>\n`;
-                    result += `${prefix}  </div>\n`;
-                    
-                    if (preview && language) {
-                      result += `${prefix}  <div class="file-preview">\n`;
-                      result += `${prefix}    <details class="preview-details">\n`;
-                      result += `${prefix}      <summary>Preview</summary>\n\n`;
-                      result += `${prefix}      \`\`\`${language}\n`;
-                      result += `${prefix}      ${preview}\n`;
-                      result += `${prefix}      ...\n`;
-                      result += `${prefix}      \`\`\`\n`;
-                      result += `${prefix}    </details>\n`;
-                      result += `${prefix}  </div>\n`;
-                    }
-                    
-                    result += `${prefix}</div>\n\n`;
+                  result += `${prefix}<div class="file-item">\n`;
+                  result += `${prefix}  <span class="file-icon">${fileIcon}</span> `;
+                  result += `<a href="${gitHubLink}" target="_blank">${item}</a> (${fileSize} KB)\n`;
+                  if (preview && language) {
+                    result += `${prefix}  <details class="preview-details">\n`;
+                    result += `${prefix}    <summary>Preview</summary>\n`;
+                    result += `${prefix}    \`\`\`${language}\n${preview}\n...\n\`\`\`\n`;
+                    result += `${prefix}  </details>\n`;
                   }
+                  result += `${prefix}</div>\n\n`;
                 }
-              } catch (err) {
-                console.error(`Error processing directory ${dir}:`, err);
-                result += `${prefix}<div class="error">Error reading directory: ${dir}</div>\n\n`;
               }
-              
-              return result;
+              return result || `${prefix}<div class="empty-dir">Empty directory</div>\n\n`;
             }
             
-            // Generate the tree structure and append it to README.md
-            const result = createTreeMarkdown(".");
-            fs.appendFileSync("README.md", result);
+            fs.appendFileSync("README.md", createTreeMarkdown("."));
           '
           
-          # Append the closing content
           cat >> README.md << 'EOL'
           </div>
           </details>
@@ -286,576 +127,50 @@ jobs:
           
           ## 🔍 How to Navigate
           
-          This README is interactive! Here's how to use it:
-          
-          - Click on 📂 folders to expand and collapse directories
-          - Click on file names to view their contents on GitHub
-          - Hover over items for additional information
-          - Use the file previews to get a quick look at the code
-          
-          <hr>
-          
-          ## 🌟 Featured Topics
-          
-          This repository covers:
-          
-          - 📊 **Data Structures**: Arrays, Linked Lists, Trees, Graphs, Stacks, Queues, Heaps
-          - 🧮 **Algorithms**: Sorting, Searching, Dynamic Programming, Greedy Algorithms
-          - 🏆 **Competitive Programming**: Problem solutions and techniques
-          - 🧩 **Problem Solving**: Common interview questions and their optimal solutions
-          
-          <hr>
-          
-          ## 📈 Learning Path
-          
-          Suggested learning progression:
-          
-          1. **Start with Basics**: Arrays, Linked Lists, Basic Sorting
-          2. **Move to Intermediate**: Trees, Heaps, Divide and Conquer
-          3. **Advanced Topics**: Graphs, Dynamic Programming, Advanced Data Structures
-          4. **Problem Solving Techniques**: Competitive Programming approaches
+          - Click 📂 to expand/collapse directories
+          - Click file names to view code on GitHub
+          - Expand previews for code snippets
           
           <hr>
           
           <div align="center">
-            <p>⭐ Star this repository if you find it useful! ⭐</p>
-            <p>Generated by Ayush-Vish Bot on $(date '+%B %d, %Y')</p>
+            <p>⭐ Star this repo if it's helpful! ⭐</p>
+            <p>Generated on $(date '+%B %d, %Y')</p>
           </div>
           
           <style>
-          :root {
-            --accent-color: #0366d6;
-            --accent-hover: #005cc5;
-            --bg-color: #f6f8fa;
-            --border-color: #e1e4e8;
-            --text-color: #24292e;
-            --text-secondary: #586069;
-            --success-color: #28a745;
-            --warning-color: #f1e05a;
-            --folder-color: #54aeff;
-            --file-color: #6a737d; 
-          }
-          
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-          }
-          
-          #directory-explorer {
-            background-color: var(--bg-color);
-            border-radius: 8px;
-            margin: 20px 0;
-            padding: 10px;
-            max-height: 80vh;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-          }
-          
-          details.dir-details {
-            margin: 5px 0;
-            padding: 0;
-            transition: all 0.3s ease;
-          }
-          
-          summary.dir-summary {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 6px 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-            list-style: none;
-          }
-          
-          summary.dir-summary:hover {
-            background-color: rgba(3, 102, 214, 0.1);
-          }
-          
-          summary.dir-summary:focus {
-            outline: 2px solid var(--accent-color);
-          }
-          
-          summary.dir-summary::marker,
-          summary.dir-summary::-webkit-details-marker {
-            display: none;
-          }
-          
-          .dir-icon {
-            margin-right: 8px;
-            color: var(--folder-color);
-            font-size: 1.1em;
-            display: inline-block;
-            transition: transform 0.2s;
-          }
-          
-          details[open] > summary .dir-icon {
-            transform: rotate(0deg);
-          }
-          
-          details:not([open]) > summary .dir-icon {
-            transform: rotate(-90deg);
-          }
-          
-          .dir-name {
-            font-weight: 600;
-            color: var(--text-color);
-          }
-          
-          .dir-count {
-            margin-left: auto;
-            color: var(--text-secondary);
-            font-size: 0.9em;
-          }
-          
-          .dir-container {
-            margin-left: 24px;
-            padding-left: 8px;
-            border-left: 1px solid var(--border-color);
-          }
-          
-          .file-item {
-            margin: 5px 0 5px 24px;
-            padding: 6px 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-          }
-          
-          .file-item:hover {
-            background-color: rgba(3, 102, 214, 0.05);
-          }
-          
-          .file-header {
-            display: flex;
-            align-items: center;
-          }
-          
-          .file-icon {
-            margin-right: 8px;
-            color: var(--file-color);
-          }
-          
-          .file-name {
-            color: var(--text-color);
-            font-weight: 500;
-            text-decoration: none;
-          }
-          
-          .file-name:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-          }
-          
-          .file-meta {
-            margin-left: auto;
-            color: var(--text-secondary);
-            font-size: 0.85em;
-          }
-          
-          .file-preview {
-            margin-top: 6px;
-            margin-left: 26px;
-          }
-          
-          .preview-details {
-            border-left: 3px solid var(--border-color);
-            padding-left: 8px;
-          }
-          
-          .preview-details summary {
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            cursor: pointer;
-          }
-          
-          .preview-details summary:hover {
-            color: var(--accent-color);
-          }
-          
-          .preview-details pre {
-            margin-top: 8px;
-            background-color: #f6f8fa;
-            border-radius: 3px;
-            font-size: 0.85em;
-            overflow-x: auto;
-          }
-          
-          .empty-dir {
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-left: 24px;
-            font-size: 0.9em;
-          }
-          
-          .error {
-            color: #cb2431;
-            font-style: italic;
-            margin-left: 24px;
-            font-size: 0.9em;
-          }
-          
-          /* Table of Contents */
-          details summary {
-            cursor: pointer;
-          }
-          
-          /* Badges */
-          img[alt^="GitHub"] {
-            margin: 0 3px;
-          }
-          
-          /* Animation for directories */
-          @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-          }
-          
-          .root-dir > summary:hover .dir-icon {
-            animation: pulse 1s infinite;
-          }
-          
-          /* Responsive adjustments */
-          @media (max-width: 768px) {
             #directory-explorer {
-              max-height: 70vh;
+              background: #f6f8fa;
+              border: 1px solid #e1e4e8;
+              border-radius: 6px;
+              padding: 10px;
+              max-height: 80vh;
+              overflow-y: auto;
             }
-            
-            .file-meta {
-              display: none;
-            }
-          }
+            .dir-details { margin: 5px 0; }
+            summary { cursor: pointer; display: flex; align-items: center; padding: 5px; }
+            .dir-icon { margin-right: 8px; }
+            .dir-container { margin-left: 20px; border-left: 1px solid #e1e4e8; }
+            .file-item { margin: 5px 0 5px 20px; }
+            .file-icon { margin-right: 8px; }
+            a { color: #0366d6; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            .preview-details { margin-left: 28px; }
+            .empty-dir { color: #586069; font-style: italic; }
           </style>
-          EOL            
-                    result += `${prefix}<div class="file-item" id="${itemId}">\n`;
-                    result += `${prefix}  <div class="file-header">\n`;
-                    result += `${prefix}    <span class="file-icon">${fileIcon.split(" ")[0]}</span>\n`;
-                    result += `${prefix}    <a href="${gitHubLink}" class="file-name" target="_blank">${item}</a>\n`;
-                    result += `${prefix}    <span class="file-meta">${fileSize} KB</span>\n`;
-                    result += `${prefix}  </div>\n`;
-                    
-                    if (preview && language) {
-                      result += `${prefix}  <div class="file-preview">\n`;
-                      result += `${prefix}    <details class="preview-details">\n`;
-                      result += `${prefix}      <summary>Preview</summary>\n\n`;
-                      result += `${prefix}      \`\`\`${language}\n`;
-                      result += `${prefix}      ${preview}\n`;
-                      result += `${prefix}      ...\n`;
-                      result += `${prefix}      \`\`\`\n`;
-                      result += `${prefix}    </details>\n`;
-                      result += `${prefix}  </div>\n`;
-                    }
-                    
-                    result += `${prefix}</div>\n\n`;
-                  }
-                }
-              } catch (err) {
-                console.error(`Error processing directory ${dir}:`, err);
-                result += `${prefix}<div class="error">Error reading directory: ${dir}</div>\n\n`;
-              }
-              
-              return result;
-            }
-            
-            // Generate the tree structure and append it to README.md
-            const result = createTreeMarkdown(".");
-            fs.appendFileSync("README.md", result);
-            
-            // Add the closing tags and the remaining content
-            fs.appendFileSync("README.md", `
-          </div>
-          </details>
-          
-          <hr>
-          
-          ## 🔍 How to Navigate
-          
-          This README is interactive! Here's how to use it:
-          
-          - Click on 📂 folders to expand and collapse directories
-          - Click on file names to view their contents on GitHub
-          - Hover over items for additional information
-          - Use the file previews to get a quick look at the code
-          
-          <hr>
-          
-          ## 🌟 Featured Topics
-          
-          This repository covers:
-          
-          - 📊 **Data Structures**: Arrays, Linked Lists, Trees, Graphs, Stacks, Queues, Heaps
-          - 🧮 **Algorithms**: Sorting, Searching, Dynamic Programming, Greedy Algorithms
-          - 🏆 **Competitive Programming**: Problem solutions and techniques
-          - 🧩 **Problem Solving**: Common interview questions and their optimal solutions
-          
-          <hr>
-          
-          ## 📈 Learning Path
-          
-          Suggested learning progression:
-          
-          1. **Start with Basics**: Arrays, Linked Lists, Basic Sorting
-          2. **Move to Intermediate**: Trees, Heaps, Divide and Conquer
-          3. **Advanced Topics**: Graphs, Dynamic Programming, Advanced Data Structures
-          4. **Problem Solving Techniques**: Competitive Programming approaches
-          
-          <hr>
-          
-          <div align="center">
-            <p>⭐ Star this repository if you find it useful! ⭐</p>
-            <p>Generated by Ayush-Vish Bot on ${new Date().toLocaleDateString()}</p>
-          </div>
-          `);
-            
-            // Add advanced CSS for better styling
-            const css = `
-          <style>
-          :root {
-            --accent-color: #0366d6;
-            --accent-hover: #005cc5;
-            --bg-color: #f6f8fa;
-            --border-color: #e1e4e8;
-            --text-color: #24292e;
-            --text-secondary: #586069;
-            --success-color: #28a745;
-            --warning-color: #f1e05a;
-            --folder-color: #54aeff;
-            --file-color: #6a737d; 
-          }
-          
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-          }
-          
-          #directory-explorer {
-            background-color: var(--bg-color);
-            border-radius: 8px;
-            margin: 20px 0;
-            padding: 10px;
-            max-height: 80vh;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-          }
-          
-          details.dir-details {
-            margin: 5px 0;
-            padding: 0;
-            transition: all 0.3s ease;
-          }
-          
-          summary.dir-summary {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 6px 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-            list-style: none;
-          }
-          
-          summary.dir-summary:hover {
-            background-color: rgba(3, 102, 214, 0.1);
-          }
-          
-          summary.dir-summary:focus {
-            outline: 2px solid var(--accent-color);
-          }
-          
-          summary.dir-summary::marker,
-          summary.dir-summary::-webkit-details-marker {
-            display: none;
-          }
-          
-          .dir-icon {
-            margin-right: 8px;
-            color: var(--folder-color);
-            font-size: 1.1em;
-            display: inline-block;
-            transition: transform 0.2s;
-          }
-          
-          details[open] > summary .dir-icon {
-            transform: rotate(0deg);
-          }
-          
-          details:not([open]) > summary .dir-icon {
-            transform: rotate(-90deg);
-          }
-          
-          .dir-name {
-            font-weight: 600;
-            color: var(--text-color);
-          }
-          
-          .dir-count {
-            margin-left: auto;
-            color: var(--text-secondary);
-            font-size: 0.9em;
-          }
-          
-          .dir-container {
-            margin-left: 24px;
-            padding-left: 8px;
-            border-left: 1px solid var(--border-color);
-          }
-          
-          .file-item {
-            margin: 5px 0 5px 24px;
-            padding: 6px 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-          }
-          
-          .file-item:hover {
-            background-color: rgba(3, 102, 214, 0.05);
-          }
-          
-          .file-header {
-            display: flex;
-            align-items: center;
-          }
-          
-          .file-icon {
-            margin-right: 8px;
-            color: var(--file-color);
-          }
-          
-          .file-name {
-            color: var(--text-color);
-            font-weight: 500;
-            text-decoration: none;
-          }
-          
-          .file-name:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-          }
-          
-          .file-meta {
-            margin-left: auto;
-            color: var(--text-secondary);
-            font-size: 0.85em;
-          }
-          
-          .file-preview {
-            margin-top: 6px;
-            margin-left: 26px;
-          }
-          
-          .preview-details {
-            border-left: 3px solid var(--border-color);
-            padding-left: 8px;
-          }
-          
-          .preview-details summary {
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            cursor: pointer;
-          }
-          
-          .preview-details summary:hover {
-            color: var(--accent-color);
-          }
-          
-          .preview-details pre {
-            margin-top: 8px;
-            background-color: #f6f8fa;
-            border-radius: 3px;
-            font-size: 0.85em;
-            overflow-x: auto;
-          }
-          
-          .empty-dir {
-            color: var(--text-secondary);
-            font-style: italic;
-            margin-left: 24px;
-            font-size: 0.9em;
-          }
-          
-          .error {
-            color: #cb2431;
-            font-style: italic;
-            margin-left: 24px;
-            font-size: 0.9em;
-          }
-          
-          /* Table of Contents */
-          details summary {
-            cursor: pointer;
-          }
-          
-          /* Badges */
-          img[alt^="GitHub"] {
-            margin: 0 3px;
-          }
-          
-          /* Animation for directories */
-          @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-          }
-          
-          .root-dir > summary:hover .dir-icon {
-            animation: pulse 1s infinite;
-          }
-          
-          /* Responsive adjustments */
-          @media (max-width: 768px) {
-            #directory-explorer {
-              max-height: 70vh;
-            }
-            
-            .file-meta {
-              display: none;
-            }
-          }
-          </style>
-          
-          <!-- JavaScript for enhancing interactivity -->
-          <script type="text/javascript">
-          document.addEventListener('DOMContentLoaded', function() {
-            // Expand all top-level directories by default
-            document.querySelectorAll('.root-dir').forEach(dir => {
-              dir.setAttribute('open', true);
-            });
-            
-            // Add click tracking
-            document.querySelectorAll('summary.dir-summary').forEach(summary => {
-              summary.addEventListener('click', function(e) {
-                const details = this.parentNode;
-                const isOpen = details.hasAttribute('open');
-                
-                // Visual feedback
-                if (!isOpen) {
-                  this.querySelector('.dir-icon').textContent = '📂';
-                  setTimeout(() => {
-                    this.querySelector('.dir-icon').textContent = '📂';
-                  }, 300);
-                } else {
-                  this.querySelector('.dir-icon').textContent = '📁';
-                }
-              });
-            });
-          });
-          </script>
-          `;
-            
-            fs.appendFileSync("README.md", css);
-          '
-          
-      - name: Commit and push if README changed
+          EOL
+
+      - name: Commit and push
         env:
           TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git config --global user.name "Ayush-Vish Bot"
-          git config --global user.email "bot@ayushvish.dev"
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
-          
           if ! git diff --quiet README.md; then
             git add README.md
-            git commit -m "🚀 Auto-update with super cool interactive README"
-            git push origin HEAD:main
+            git commit -m "Update interactive README"
+            git push origin main
           else
             echo "No changes to commit"
           fi
