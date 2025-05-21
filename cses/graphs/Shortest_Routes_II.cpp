@@ -14,25 +14,44 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    int n, m;
-        cin >> n >> m;
-        map<int, int> cnt;
-        while (n--) {
-            int x;
-            cin >> x;
-            cnt[x % m]++;
-        }
-        int ans = 0;
-        for (auto &c : cnt) {
-            if (c.first == 0) ans++;
-            else if (2 * c.first == m) {
-                ans++;
-            } else if (2 * c.first < m || cnt.find(m - c.first) == cnt.end()) {
-                int x = c.second, y = cnt[m - c.first];
-                ans += 1 + max(0LL, abs(x - y) - 1);
+    int n,m ,q ;
+    cin >> n >> m >> q ;
+    vector<vector<int>> v(n +1 ,vector<int>(n +1, INF));
+    for (int i = 0; i < n; i++) v[i][i] = 0;
+
+    for(int i=0 ;i < m ; i ++ ) {
+        int a,b,c;cin >> a >> b >> c ;
+        a -- ; b -- ;
+
+        v[a][b] = min(v[a][b], c);
+        v[b][a] = min(v[b][a], c);
+
+    }
+    // for(auto it : v ) {
+    //     printArr(it)
+    // }
+ 
+    for(int k=0 ; k < n ;k ++ ) {
+        for(int i=0 ;i < n ; i ++ ) {
+            for(int j=0 ; j < n ; j ++ ) {
+                if(v[i][k] < INF && v[k][j] < INF)  
+                    v[i][j] = min(v[i][j] , v[i][k] + v[k][j]);
             }
         }
-        cout << ans << '\n';
+    }
+    for(int i=0 ; i < q ;i ++ ){
+        int x,y; 
+        cin >> x >> y ;
+        x -- ;y -- ;
+        
+        if(v[x][y] >=INF) {
+            cout << -1<< endl;
+        }else {
+            cout << v[x][y]<< endl;
+        }
+    }
+    
+    
 
 }
 int32_t main(){
@@ -41,7 +60,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-    cin >> t;
+//     cin >> t;
     while(t--){
         solve();
     }

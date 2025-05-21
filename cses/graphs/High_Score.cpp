@@ -14,26 +14,27 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    int n, m;
-        cin >> n >> m;
-        map<int, int> cnt;
-        while (n--) {
-            int x;
-            cin >> x;
-            cnt[x % m]++;
-        }
-        int ans = 0;
-        for (auto &c : cnt) {
-            if (c.first == 0) ans++;
-            else if (2 * c.first == m) {
-                ans++;
-            } else if (2 * c.first < m || cnt.find(m - c.first) == cnt.end()) {
-                int x = c.second, y = cnt[m - c.first];
-                ans += 1 + max(0LL, abs(x - y) - 1);
-            }
-        }
-        cout << ans << '\n';
+      int n ,m ;
+      cin >> n >> m ;
+      vector<vector<int>> g [n];
+      for(int i=0 ;i < m ;i ++ ) {
+            int a , b ,c ;
+            cin >>a >>b >> c ;
+            a -- ;
+            b -- ;
+            g[a].push_back({b,c});
+      }
+      int ans= 0 ;
+      // dist , node 
+      priority_queue<pll> pq ;
+      pq.push({0,0 });
+      while(!pq.empty()) {
+            auto p = pq.top();
+            pq.pop();
 
+            
+
+      }
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
@@ -41,7 +42,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-    cin >> t;
+//     cin >> t;
     while(t--){
         solve();
     }

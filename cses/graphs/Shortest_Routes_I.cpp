@@ -16,21 +16,35 @@ int n,m ;
 
 void solve(){
       cin >> n >> m;
-      vector<vector<int>> adj[n +1 ];
+      vector<vector<pll>> adj(n+1 );
       for(int i=0 ;i < m ; i ++ ) {
             int a,b,c;cin >> a >> b >> c ;
             adj[a].push_back({b,c});
-            adj[b].push_back({a,c});
+            // adj[b].push_back({a,c});
       }
-      vector<int> ans (n +1 , INF);
-      ans[1] = 0 ;
+      vector<int> dis (n +1 , INF);
+      dis[1] = 0 ;
 
       priority_queue<pll,vector<pll>,greater<pll>> pq ;
-      pq.push({0,1});
+      pq.push({0,1});// O(n + m )*log(n)
+
       while(!pq.empty()) {
             auto top = pq.top();pq.pop();
-            
-
+            int from = top.second;
+            int fromDis = top.first;
+            if(fromDis > dis[from]) continue;
+            for(auto it :adj[from] ) {
+                  int to = it.first;
+                  int toDis = it.second;
+                  if(dis[to] > dis[from] +toDis) {
+                        dis[to] = dis[from] + toDis;
+                        pq.push({dis[to] , to}); 
+                  }
+                  
+            }
+      }
+      for(int i=1 ;i <= n ;i ++  ) {
+            cout << dis[i] << " ";
       }
      
 }
