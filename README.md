@@ -369,6 +369,57 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
+  <summary><span class="dir-icon">📂</span> Codeforces Round 1025 (Div. 2)	 (3 items)</summary>
+  <div class="dir-container">
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1025 (Div. 2)	/A_It_s_Time_To_Duel.cpp" target="_blank">A_It_s_Time_To_Duel.cpp</a> (1.7 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1025 (Div. 2)	/B_Slice_to_Survive.cpp" target="_blank">B_Slice_to_Survive.cpp</a> (1.5 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1025 (Div. 2)	/C_1_Hacking_Numbers_Easy_Version.cpp" target="_blank">C_1_Hacking_Numbers_Easy_Version.cpp</a> (1.6 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  </div>
+</details>
+
+<details open class="dir-details">
   <summary><span class="dir-icon">📂</span> Codeforces Round 996 (4 items)</summary>
   <div class="dir-container">
   <div class="file-item">
@@ -460,7 +511,7 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> core (9 items)</summary>
+  <summary><span class="dir-icon">📂</span> core (10 items)</summary>
   <div class="dir-container">
   <div class="file-item">
     <span class="file-icon">📄</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/core/binarySearch" target="_blank">binarySearch</a> (26.0 KB)
@@ -527,6 +578,21 @@ using namespace std;
   </div>
 
   <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/core/quickselect.cpp" target="_blank">quickselect.cpp</a> (1.3 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/core/segment_tree.cpp" target="_blank">segment_tree.cpp</a> (1.2 KB)
     <details class="preview-details">
       <summary>Preview</summary>
@@ -579,7 +645,7 @@ class TrieNode
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> cses (4 items)</summary>
+  <summary><span class="dir-icon">📂</span> cses (5 items)</summary>
   <div class="dir-container">
   <details class="dir-details">
     <summary><span class="dir-icon">📂</span> DP (19 items)</summary>
@@ -862,7 +928,7 @@ using namespace std;
   </details>
 
   <details class="dir-details">
-    <summary><span class="dir-icon">📂</span> graphs (6 items)</summary>
+    <summary><span class="dir-icon">📂</span> graphs (8 items)</summary>
     <div class="dir-container">
     <div class="file-item">
       <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Building_Roads.cpp" target="_blank">Building_Roads.cpp</a> (2.0 KB)
@@ -940,7 +1006,37 @@ using namespace std;
     </div>
 
     <div class="file-item">
-      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Round_Trip.cpp" target="_blank">Round_Trip.cpp</a> (2.1 KB)
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Monsters.cpp" target="_blank">Monsters.cpp</a> (4.1 KB)
+      <details class="preview-details">
+        <summary>Preview</summary>
+        ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+      </details>
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Round_Trip.cpp" target="_blank">Round_Trip.cpp</a> (2.6 KB)
+      <details class="preview-details">
+        <summary>Preview</summary>
+        ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+      </details>
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Shortest_Routes_I.cpp" target="_blank">Shortest_Routes_I.cpp</a> (1.6 KB)
       <details class="preview-details">
         <summary>Preview</summary>
         ```cpp
@@ -1738,6 +1834,10 @@ t = str(input("Enter a Number a = 10 "  ))
 
     </div>
   </details>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/Round_Trip.cpp" target="_blank">Round_Trip.cpp</a> (0.0 KB)
+  </div>
 
   </div>
 </details>
@@ -5018,7 +5118,7 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> specialist (22 items)</summary>
+  <summary><span class="dir-icon">📂</span> specialist (24 items)</summary>
   <div class="dir-container">
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/A_Skibidus_and_Amog_u.cpp" target="_blank">A_Skibidus_and_Amog_u.cpp</a> (0.9 KB)
@@ -5070,7 +5170,7 @@ using namespace std;
   </div>
 
   <div class="file-item">
-    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Cat_Cycle.cpp" target="_blank">B_Cat_Cycle.cpp</a> (1.2 KB)
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Cat_Cycle.cpp" target="_blank">B_Cat_Cycle.cpp</a> (1.3 KB)
     <details class="preview-details">
       <summary>Preview</summary>
       ```cpp
@@ -5116,6 +5216,36 @@ using namespace std;
 
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Find_the_Permutation.cpp" target="_blank">B_Find_the_Permutation.cpp</a> (0.8 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_M_arrays.cpp" target="_blank">B_M_arrays.cpp</a> (1.2 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Rock_and_Lever.cpp" target="_blank">B_Rock_and_Lever.cpp</a> (1.4 KB)
     <details class="preview-details">
       <summary>Preview</summary>
       ```cpp
