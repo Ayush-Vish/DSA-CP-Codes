@@ -114,6 +114,42 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
+  <summary><span class="dir-icon">📂</span> AtCoder Regular Contest 198 (Div. 2) (2 items)</summary>
+  <div class="dir-container">
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/AtCoder Regular Contest 198 (Div. 2)/a11.cpp" target="_blank">a11.cpp</a> (1.5 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/AtCoder Regular Contest 198 (Div. 2)/a2.cpp" target="_blank">a2.cpp</a> (1.4 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  </div>
+</details>
+
+<details open class="dir-details">
   <summary><span class="dir-icon">📂</span> cf-966 (3 items)</summary>
   <div class="dir-container">
   <div class="file-item">
@@ -420,6 +456,57 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
+  <summary><span class="dir-icon">📂</span> Codeforces Round 1026 (Div. 2) (3 items)</summary>
+  <div class="dir-container">
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1026 (Div. 2)/A_Fashionable_Array.cpp" target="_blank">A_Fashionable_Array.cpp</a> (1.7 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1026 (Div. 2)/B_Down_with_Brackets.cpp" target="_blank">B_Down_with_Brackets.cpp</a> (1.7 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/Codeforces Round 1026 (Div. 2)/C_Racing.cpp" target="_blank">C_Racing.cpp</a> (2.7 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  </div>
+</details>
+
+<details open class="dir-details">
   <summary><span class="dir-icon">📂</span> Codeforces Round 996 (4 items)</summary>
   <div class="dir-container">
   <div class="file-item">
@@ -645,8 +732,26 @@ class TrieNode
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> cses (5 items)</summary>
+  <summary><span class="dir-icon">📂</span> cses (6 items)</summary>
   <div class="dir-container">
+  <details class="dir-details">
+    <summary><span class="dir-icon">📂</span> .idea (3 items)</summary>
+    <div class="dir-container">
+    <div class="file-item">
+      <span class="file-icon">📄</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/.idea/cses.iml" target="_blank">cses.iml</a> (0.3 KB)
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">📄</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/.idea/modules.xml" target="_blank">modules.xml</a> (0.3 KB)
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">📄</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/.idea/vcs.xml" target="_blank">vcs.xml</a> (0.2 KB)
+    </div>
+
+    </div>
+  </details>
+
   <details class="dir-details">
     <summary><span class="dir-icon">📂</span> DP (19 items)</summary>
     <div class="dir-container">
@@ -976,7 +1081,7 @@ using namespace std;
     </div>
 
     <div class="file-item">
-      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/High_Score.cpp" target="_blank">High_Score.cpp</a> (1.6 KB)
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/High_Score.cpp" target="_blank">High_Score.cpp</a> (1.2 KB)
       <details class="preview-details">
         <summary>Preview</summary>
         ```cpp
@@ -5148,7 +5253,7 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> specialist (29 items)</summary>
+  <summary><span class="dir-icon">📂</span> specialist (30 items)</summary>
   <div class="dir-container">
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/A_Skibidus_and_Amog_u.cpp" target="_blank">A_Skibidus_and_Amog_u.cpp</a> (0.9 KB)
@@ -5415,6 +5520,21 @@ using namespace std;
 
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/D_Counting_Points.cpp" target="_blank">D_Counting_Points.cpp</a> (0.9 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/D_D_D_D.cpp" target="_blank">D_D_D_D.cpp</a> (1.3 KB)
     <details class="preview-details">
       <summary>Preview</summary>
       ```cpp
