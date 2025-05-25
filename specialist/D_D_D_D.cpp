@@ -14,7 +14,15 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    
+      int n , m , l ;
+      cin >> n >> m >> l ;
+      vector<int> a(l);
+      for(int i=0 ;i < l ;i ++ )  {
+            cin >> a[i];
+      }
+      
+
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
@@ -22,7 +30,7 @@ int32_t main(){
     cout.tie(NULL);
     auto start = chrono::high_resolution_clock::now();
     int t = 1;
-//     cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

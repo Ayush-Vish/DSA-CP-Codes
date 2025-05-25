@@ -14,7 +14,23 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-    
+      int n ;
+      cin >> n;
+  
+      if (n == 1) {
+          cout << 1 << endl;
+          cout << 1 << endl;
+      } else {
+          int k = n / 2;
+          cout << k << endl;
+          for (int i = 1; i <= k; ++i) {
+              cout << 2 * i;
+              if (i != k) cout << " ";
+          }
+          cout << endl;
+      }
+
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
