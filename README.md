@@ -928,7 +928,7 @@ using namespace std;
   </details>
 
   <details class="dir-details">
-    <summary><span class="dir-icon">📂</span> graphs (8 items)</summary>
+    <summary><span class="dir-icon">📂</span> graphs (10 items)</summary>
     <div class="dir-container">
     <div class="file-item">
       <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Building_Roads.cpp" target="_blank">Building_Roads.cpp</a> (2.0 KB)
@@ -962,6 +962,21 @@ using namespace std;
 
     <div class="file-item">
       <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Counting_Rooms.cpp" target="_blank">Counting_Rooms.cpp</a> (2.1 KB)
+      <details class="preview-details">
+        <summary>Preview</summary>
+        ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+      </details>
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/High_Score.cpp" target="_blank">High_Score.cpp</a> (1.6 KB)
       <details class="preview-details">
         <summary>Preview</summary>
         ```cpp
@@ -1036,7 +1051,22 @@ using namespace std;
     </div>
 
     <div class="file-item">
-      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Shortest_Routes_I.cpp" target="_blank">Shortest_Routes_I.cpp</a> (1.6 KB)
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Shortest_Routes_I.cpp" target="_blank">Shortest_Routes_I.cpp</a> (2.2 KB)
+      <details class="preview-details">
+        <summary>Preview</summary>
+        ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+      </details>
+    </div>
+
+    <div class="file-item">
+      <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Shortest_Routes_II.cpp" target="_blank">Shortest_Routes_II.cpp</a> (2.1 KB)
       <details class="preview-details">
         <summary>Preview</summary>
         ```cpp
@@ -5118,7 +5148,7 @@ using namespace std;
 </details>
 
 <details open class="dir-details">
-  <summary><span class="dir-icon">📂</span> specialist (24 items)</summary>
+  <summary><span class="dir-icon">📂</span> specialist (29 items)</summary>
   <div class="dir-container">
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/A_Skibidus_and_Amog_u.cpp" target="_blank">A_Skibidus_and_Amog_u.cpp</a> (0.9 KB)
@@ -5167,6 +5197,36 @@ using namespace std;
 
   <div class="file-item">
     <span class="file-icon">🐍</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/a.py" target="_blank">a.py</a> (0.0 KB)
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_1_Palindrome_Game_easy_version.cpp" target="_blank">B_1_Palindrome_Game_easy_version.cpp</a> (1.6 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_AND_0_Sum_Big.cpp" target="_blank">B_AND_0_Sum_Big.cpp</a> (1.3 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
   </div>
 
   <div class="file-item">
@@ -5230,7 +5290,7 @@ using namespace std;
   </div>
 
   <div class="file-item">
-    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_M_arrays.cpp" target="_blank">B_M_arrays.cpp</a> (1.2 KB)
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Flip_the_Bits.cpp" target="_blank">B_Flip_the_Bits.cpp</a> (1.7 KB)
     <details class="preview-details">
       <summary>Preview</summary>
       ```cpp
@@ -5242,6 +5302,25 @@ using namespace std;
 ...
 ```
     </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_M_arrays.cpp" target="_blank">B_M_arrays.cpp</a> (1.7 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/B_Prinzessin_der_Verurteilung.cpp" target="_blank">B_Prinzessin_der_Verurteilung.cpp</a> (0.0 KB)
   </div>
 
   <div class="file-item">
@@ -5370,6 +5449,21 @@ using namespace std;
 
   <div class="file-item">
     <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/D_Graph_and_Graph.cpp" target="_blank">D_Graph_and_Graph.cpp</a> (0.9 KB)
+    <details class="preview-details">
+      <summary>Preview</summary>
+      ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair<int, int>
+...
+```
+    </details>
+  </div>
+
+  <div class="file-item">
+    <span class="file-icon">🔥</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/specialist/D_Same_Differences.cpp" target="_blank">D_Same_Differences.cpp</a> (1.4 KB)
     <details class="preview-details">
       <summary>Preview</summary>
       ```cpp
