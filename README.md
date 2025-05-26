@@ -1049,7 +1049,7 @@ const int mod = 1e9 + 7;
     </details>
 
     <details class="dir-details">
-      <summary><span class="dir-icon">📁</span> <strong>graphs</strong> (10 items)</summary>
+      <summary><span class="dir-icon">📁</span> <strong>graphs</strong> (14 items)</summary>
       <div class="dir-content">
         <div class="file-item">
           <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Building_Roads.cpp" target="_blank">Building_Roads.cpp</a> <span class="file-meta">(2.0 KB)</span>
@@ -1097,7 +1097,56 @@ const int mod = 1e9 + 7;
         </div>
 
         <div class="file-item">
-          <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/High_Score.cpp" target="_blank">High_Score.cpp</a> <span class="file-meta">(1.2 KB)</span>
+          <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Cycle_Finding.cpp" target="_blank">Cycle_Finding.cpp</a> <span class="file-meta">(1.2 KB)</span>
+          <details class="preview-details">
+            <summary>👀 Preview</summary>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long
+
+const int INF = 1e18;
+
+int n, m;
+...</code></pre>
+          </details>
+        </div>
+
+        <div class="file-item">
+          <span class="file-icon">📄</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Flight_Discount" target="_blank">Flight_Discount</a> <span class="file-meta">(37.4 KB)</span>
+        </div>
+
+        <div class="file-item">
+          <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Flight_Discount.cpp" target="_blank">Flight_Discount.cpp</a> <span class="file-meta">(2.3 KB)</span>
+          <details class="preview-details">
+            <summary>👀 Preview</summary>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair&lt;int, int&gt;
+const int modll = 1e17;
+const int mod = 1e9 + 7;
+...</code></pre>
+          </details>
+        </div>
+
+        <div class="file-item">
+          <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/Flight_Routes.cpp" target="_blank">Flight_Routes.cpp</a> <span class="file-meta">(1.4 KB)</span>
+          <details class="preview-details">
+            <summary>👀 Preview</summary>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define int long long int
+#define pb push_back
+#define pll pair&lt;int, int&gt;
+const int modll = 1e17;
+const int mod = 1e9 + 7;
+...</code></pre>
+          </details>
+        </div>
+
+        <div class="file-item">
+          <span class="file-icon">⚙️</span> <a href="https://github.com/Ayush-Vish/DSA-CP-Codes/blob/main/cses/graphs/High_Score.cpp" target="_blank">High_Score.cpp</a> <span class="file-meta">(2.3 KB)</span>
           <details class="preview-details">
             <summary>👀 Preview</summary>
             <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
@@ -5898,7 +5947,7 @@ const int mod = 1e9 + 7;
 ---
 
 <div align="center">
-  <p>Generated on May 25, 2025 at 17:24:59 UTC</p>
+  <p>Generated on May 26, 2025 at 13:58:57 UTC</p>
   <p>⭐ Found this useful? Star the repo! ⭐</p>
 </div>
 
