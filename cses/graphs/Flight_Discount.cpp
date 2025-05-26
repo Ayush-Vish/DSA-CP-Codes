@@ -12,60 +12,46 @@ vector<int> seive(int n) { vector<int> prime(n+1, 1); for(int i=2; i*i<=n; i++) 
 template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i++) { T ele; cin>>ele; a[i]=ele; } }
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
-
-struct Edge {
-    int u,v,w;
-};
-
-void dfs(int i, vector<int>&vis,vector<int>adj[]) {
-    vis[i] = 1 ;
-    for(auto it : adj[i]) {
-        if(!vis[it])
-            dfs(it,vis,adj);
-    }
-}
-
+int n;
+const int oneE5 = (int)1e5+1;
+vector<pll> adj[oneE5];
 void solve(){
-    int n,m;
-    cin >> n >> m ;
-    vector<Edge> arr(m );
-    vector<int>adj[n],revAdj[n];
-    for(int i=0 ;i < m ;i ++) {
-        int a,b,c ;
-        cin >> arr[i].u >> arr[i].v >> arr[i].w;
-        arr[i].u --;
-        arr[i].v --;
-        arr[i].w  = - arr[i].w;
-        adj[arr[i].u].push_back(arr[i].v);
-        revAdj[arr[i].v].push_back(arr[i].u);
-    }
+      int m;
+      cin >> n >> m ;
+      for(int i=0 ;i < m ;i ++  ){
+            int a ,b ,c ;
+            cin >>a >>b >> c ;
+            a -- ;
+            b -- ;
+            adj[a].emplace_back(b,c);
+      }
+      vector<vector<int>> dist(n,vector<int>(2,INF));
+      dist[0][0] = 0 ;
+      //dist ,node , used 
+      priority_queue<tuple<int,int,int>, vector<tuple<int,int,int>>,greater<tuple<int,int,int>>> pq ;
+      pq.emplace(0,0,0);
+      while(!pq.empty()) {
+            auto [d,u,used] = pq.top();
+            pq.pop();
+            if (d > dist[u][used]) continue;
 
-    vector<int> dist(n, INF);
-    dist[0] = 0 ;
+            for(auto [v,w]:adj[u]) {
+                  // not used 
+                  if(dist[v][used] > d + w ) {
+                        dist[v][used] = d + w ;
+                        pq.emplace(dist[v][used],v,used);
+                  }
 
-    vector<int>vis1(n),vis2(n);
-    dfs(0,vis1,adj);
-    dfs(n-1,vis2,revAdj);
-    for(int i=0 ;i <n;i ++ ) {
-        for(auto it : arr ) {
-            int u = it.u;
-            int v = it.v;
-            int w = it.w;
-            if(dist[u] == INF) continue;
-            if(dist[v]> dist[u] + w ) {
-                dist[v ]= dist[u] +w ;
-                if(i == n-1 && vis1[v]&& vis2[v])  {
-                    cout << -1 << endl;
-                    return;
-                }
+                  // used 
+                  
+                  if(used ==0  and dist[v][1] > d + w/2 ) {
+                        dist[v][1] = d + w /2 ;
+                        pq.emplace(dist[v][1],v ,1 ) ;
+                  }
             }
-        }
-    }
-    
-
-    cout << -dist[n-1] << endl; 
-    
-
+      }   
+      cout << dist[n-1][1] << "\n";
+     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);
