@@ -12,46 +12,39 @@ vector<int> seive(int n) { vector<int> prime(n+1, 1); for(int i=2; i*i<=n; i++) 
 template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i++) { T ele; cin>>ele; a[i]=ele; } }
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
+int gcd(int a, int b) { if(b==0) return a; return gcd(b, a%b); }
+int lcm(int a, int b) { return (a*b)/gcd(a, b); }
+int modInverse(int a) { return fastPow(a, mod-2); }
+int modAdd(int a, int b) { return (a + b) % mod; }
+int modSub(int a, int b) { return (a - b + mod) % mod; }
+
+int _;
+vector<int> __, v ,pre;
+vector<vector<int>> __2d;
 
 void solve(){
-     int n,m,k;
-     cin >> n >> m >> k ;
-     vector<pll>adj[n];
-     for(int i=0 ;i < m ;i ++ ) { 
-      int a,b,c;
-      cin  >> a >> b >>c ;
-      a -- ;
-      b --;
-      adj[a].emplace_back(b,c);
-
+     int n,m;
+     cin >> n >> m;
+     v.resize(n);
+     pre.resize(n);
+     for(int i=0 ;i < n ;i ++  ){
+      cin >> v[i];
      }
-    priority_queue<pll,vector<pll>,greater<pll>> pq;
-    priority_queue<int,vector<int>,greater<int>> pq1;
+     pre[0] = v[0];
+     for(int i=1 ;i < n ;i ++ ) {
+      pre[i] = v[i] + pre[i-1];
+     }
+     for(_=0; _<m ;_++){
+      int a,b ;
+      cin >> a >> b ;
+      a -- ;
+      b -- ;
+      if(a == 0  ) {
+            cout << (b != 0 ? pre[b]:pre[0])<<endl ;
+      }else 
+            cout << pre[b] - pre[a-1]<< endl;
+     }
 
-    vector<vector<int>>dist(n);
-    // dist,node
-    pq.push({0,0});
-
-    while(!pq.empty()) {
-        auto [d,u] = pq.top();pq.pop();
-        if(dist[u].size()>=k) continue; 
-        dist[u].push_back(d);
-        for(auto [v,w]:adj[u]) {
-           if (dist[v].size() < k) {
-                pq.push({d + w, v});
-            }
-        }  
-    }
-
-   for(auto it: dist[n-1]) {
-    cout << it <<  " ";
-   }
-
-
-
-
-
-     
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

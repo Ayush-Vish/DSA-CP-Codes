@@ -13,45 +13,35 @@ template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i+
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
+vector<vector<int>>adj;
+vector<int> dp;
+int dfs(int src ,int tar) {
+      if(src == tar) {
+            return 1LL;
+      }
+      if(dp[src] != -1 ) return dp[src];
+      int ans =0 ;
+      for(auto it : adj[src]) {
+            ans  = (ans %mod +  dfs(it,tar) %mod )%mod;
+      }
+      return dp[src] =  ans %mod  ;
+
+}
+
 void solve(){
-     int n,m,k;
-     cin >> n >> m >> k ;
-     vector<pll>adj[n];
-     for(int i=0 ;i < m ;i ++ ) { 
-      int a,b,c;
-      cin  >> a >> b >>c ;
-      a -- ;
-      b --;
-      adj[a].emplace_back(b,c);
-
-     }
-    priority_queue<pll,vector<pll>,greater<pll>> pq;
-    priority_queue<int,vector<int>,greater<int>> pq1;
-
-    vector<vector<int>>dist(n);
-    // dist,node
-    pq.push({0,0});
-
-    while(!pq.empty()) {
-        auto [d,u] = pq.top();pq.pop();
-        if(dist[u].size()>=k) continue; 
-        dist[u].push_back(d);
-        for(auto [v,w]:adj[u]) {
-           if (dist[v].size() < k) {
-                pq.push({d + w, v});
-            }
-        }  
-    }
-
-   for(auto it: dist[n-1]) {
-    cout << it <<  " ";
-   }
-
-
-
-
-
+      int n ,m ;
+      cin >> n >> m ;
+      adj.resize(n);
+      dp.resize(n,-1);
+      for(int i=0 ;i < m ;i ++ ) {
+            int a ,b ;
+            cin >>a >>b ;
+            a -- ;
+            b -- ;
+            adj[a].push_back(b);
+      }      
      
+      cout << dfs(0,n-1) % mod ;
 }
 int32_t main(){
     ios_base::sync_with_stdio(false);

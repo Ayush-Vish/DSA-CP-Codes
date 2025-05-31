@@ -14,43 +14,34 @@ template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
 
 void solve(){
-     int n,m,k;
-     cin >> n >> m >> k ;
-     vector<pll>adj[n];
-     for(int i=0 ;i < m ;i ++ ) { 
-      int a,b,c;
-      cin  >> a >> b >>c ;
-      a -- ;
-      b --;
-      adj[a].emplace_back(b,c);
+      int n,q;
+      cin >> n >> q ;
+      int m = 32;
 
-     }
-    priority_queue<pll,vector<pll>,greater<pll>> pq;
-    priority_queue<int,vector<int>,greater<int>> pq1;
+      vector<vector<int>>arr(m,vector<int>(n,-1));
+      for(int i=0 ;i < n ;i ++  ){
+            cin >> arr[0][i];
+            arr[0][i] -- ;
 
-    vector<vector<int>>dist(n);
-    // dist,node
-    pq.push({0,0});
-
-    while(!pq.empty()) {
-        auto [d,u] = pq.top();pq.pop();
-        if(dist[u].size()>=k) continue; 
-        dist[u].push_back(d);
-        for(auto [v,w]:adj[u]) {
-           if (dist[v].size() < k) {
-                pq.push({d + w, v});
+      }
+      for(int i=1 ; i< m;i ++){
+            for(int j=0;j<n;j++ ) {
+                  arr[i][j] = arr[i-1][arr[i-1][j]];
             }
-        }  
-    }
-
-   for(auto it: dist[n-1]) {
-    cout << it <<  " ";
-   }
-
-
-
-
-
+      }
+      for(int _ =0 ; _ < q ; _ ++ ) {
+            int a,b ;
+            cin >> a >> b ;
+            a --;
+            for(int i=0;i < m ;i ++ ) {
+                  if(a == -1 ) break;
+                  if(b&(1 << i )) {
+                        a = arr[i][a];
+                        // arr[a][i]
+                  }
+            }
+        cout << (a == -1 ? -1 : a + 1) << "\n";
+      }
      
 }
 int32_t main(){
