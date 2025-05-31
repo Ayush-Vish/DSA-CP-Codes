@@ -186,6 +186,8 @@ public:
 
 int main()
 {
+      Trie t = new Trie();
+
 
       return 0;
 }
