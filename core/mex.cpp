@@ -22,8 +22,50 @@ int _;
 vector<int> __;
 vector<vector<int>> __2d;
 
+class Mex { 
+      private:
+      // freq 
+      map<int,int> mpp ;
+      // missing no in array  -> candidates of MEX 
+      set<int> st ;
+      // smalllest missing no will be *st.begin();
+      vector<int> arr ;
+      Mex( vector<int>a ) {
+            for(int i=0; i <=a.size();i++) {
+                  st.insert(i);
+            }
+            for(auto it :a ) {
+                  mpp[it] ++;
+                  st.erase(it);
+            }
+      }
+      protected:
+      int mex() {
+            return *st.begin();
+      }
+      void update(int idx ,int val ) {
+            mpp[arr[idx]] --;
+            if(mpp[arr[idx]] ==0 ) {
+                  st.insert(arr[idx]);
+            }
+            arr[idx] = val;
+            ++mpp[val];
+            st.erase(val);
+      }
+
+};
+
+
 void solve(){
-      
+      vector<int>a = {0,1,2,4,5};
+      set<int> st(a.begin(),a.end());
+      int res =0 ;
+      while(st.count(res)) {
+            res ++ ;
+
+      }
+      cout << res << endl;
+
       
      
 }
