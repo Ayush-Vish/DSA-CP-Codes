@@ -18,9 +18,10 @@ int modInverse(int a) { return fastPow(a, mod-2); }
 int modAdd(int a, int b) { return (a + b) % mod; }
 int modSub(int a, int b) { return (a - b + mod) % mod; }
 
-int _,n,q,logk = 21 ;
-vector<int> __,level;
-vector<vector<int>> __2d,dp,adj;
+int n,q;
+int logk  ;
+vector<int> level;
+vector<vector<int>> dp,adj;
 
 void dfs(int src,int parent ) {
       level[src] = level[parent] +1 ;
@@ -58,6 +59,7 @@ int lca (int a, int b ) {
 void solve(){
       cin >> n >> q ;
       adj.resize(n+1);
+      logk  = log2(n ) +1 ;
      
       dp.resize(n +1,vector<int>(logk));
       level.resize(n +1 );
@@ -82,7 +84,7 @@ void solve(){
       for(int z =0 ;z < q ;z ++ ) {
             int a,b; 
             cin >>a >> b ;
-            cout << level[a] + level[b] - 2*level[lca(a,b)] <<endl;
+            cout << level[a] + level[b] - 2*level[lca(a,b)] <<"\n";
       }
 
 }
@@ -90,14 +92,14 @@ int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    auto start = chrono::high_resolution_clock::now();
+//     auto start = chrono::high_resolution_clock::now();
     int t = 1;
 //     cin >> t;
     while(t--){
         solve();
     }
-    auto end = chrono::high_resolution_clock::now();
-    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
-    cerr << fixed << setprecision(10) << "Time measured: " << static_cast<double>(elapsed.count()) * 1e-9 << " seconds.\n";
+//     auto end = chrono::high_resolution_clock::now();
+//     auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+//     cerr << fixed << setprecision(10) << "Time measured: " << static_cast<double>(elapsed.count()) * 1e-9 << " seconds.\n";
     return 0;
 }
