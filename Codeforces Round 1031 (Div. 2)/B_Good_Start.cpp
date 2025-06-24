@@ -26,30 +26,15 @@ vector<int> __;
 vector<vector<int>> __2d;
 
 void solve(){
-    string s,t;
-    cin >> s >> t ;
-    int n = s.size();
-    int ans =0 ;
-    int i=0;
-    while(i < n && s[i] == t[i]) {
-        ans += 2 ;
-        i ++ ;
-    }
-    if( i < n &&   abs(s[i] - t[i]) == 1 ) {
-        ans ++ ;
-        i ++ ;
-        while(  i< n &&  s[i] == '9' && t[i] == '0') {
-            ans ++; 
-            i ++ ;
-
-        }
-    }
-    cout << ans << endl;
-
-
-      
-
-    
+      int w,h,a,b;
+      cin >>w >> h >>a >> b ;
+      int x1,x2,y1,y2;
+      cin >> x1 >> y1 >> x2>> y2;
+      if(((x1!= x2 ) && (abs(x1-x2)%a ==0 )) ||  ((y1 != y2) && (abs(y1-y2) % b == 0 ))) {
+            cout << "YES" << endl;
+            return;
+      }
+      cout << "NO"  << endl;
 }
 bool multi = true;
 int32_t main(){

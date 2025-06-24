@@ -25,31 +25,23 @@ int _;
 vector<int> __;
 vector<vector<int>> __2d;
 
+int f(int a , int b , int x ,int y , int k ) {
+      int ans= 0;
+      ans += max(( k-a +x)/x ,0LL );
+      k -= max(( k-a +x)/x,0LL) *  x ;
+      ans += max((k-b+y)/y, 0LL);
+      return ans ;
+}
+
 void solve(){
-    string s,t;
-    cin >> s >> t ;
-    int n = s.size();
-    int ans =0 ;
-    int i=0;
-    while(i < n && s[i] == t[i]) {
-        ans += 2 ;
-        i ++ ;
-    }
-    if( i < n &&   abs(s[i] - t[i]) == 1 ) {
-        ans ++ ;
-        i ++ ;
-        while(  i< n &&  s[i] == '9' && t[i] == '0') {
-            ans ++; 
-            i ++ ;
-
-        }
-    }
-    cout << ans << endl;
-
+      int k,a,b,x,y;
+      cin >> k >> a >> b >> x >> y ;
 
       
 
-    
+
+      cout <<max(f(a,b,x,y,k),f(b,a,y,x,k)) << endl;
+
 }
 bool multi = true;
 int32_t main(){
