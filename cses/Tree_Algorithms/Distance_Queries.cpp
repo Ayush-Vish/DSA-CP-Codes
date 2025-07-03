@@ -71,7 +71,7 @@ void solve(){
             
             // dp[b][0] = a;
       }
-      level[0] = -1; 
+      level[0] = -1;
       dfs(1,0);
       for(int j=1 ; j<logk; j ++ ) {
             for(int i=1 ;i <=n ;i ++ ) {

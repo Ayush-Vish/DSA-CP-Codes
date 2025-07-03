@@ -12,12 +12,15 @@ vector<int> seive(int n) { vector<int> prime(n+1, 1); for(int i=2; i*i<=n; i++) 
 template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i++) { T ele; cin>>ele; a[i]=ele; } }
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
-int gcd(int a, int b) { if(b==0) return a; return gcd(b, a%b); }
-int lcm(int a, int b) { return (a*b)/gcd(a, b); }
+int gcd(int a, int b) { return b==0 ? a : gcd(b, a%b); }
+int lcm(int a, int b) { return (a/gcd(a,b))*b; }
 int modInverse(int a) { return fastPow(a, mod-2); }
 int modAdd(int a, int b) { return (a + b) % mod; }
 int modSub(int a, int b) { return (a - b + mod) % mod; }
-
+int modMul(int a, int b) { return (1LL * a * b) % mod; }
+vector<int> factorial, inverseFactorial;
+void precomputeCombi(int n) { factorial.resize(n+1); inverseFactorial.resize(n+1); factorial[0]=1; for(int i=1;i<=n;i++) factorial[i]=modMul(factorial[i-1],i); inverseFactorial[n]=fastPow(factorial[n],mod-2); for(int i=n-1;i>=0;i--) inverseFactorial[i]=modMul(inverseFactorial[i+1],i+1); }
+int NCR(int n, int r) { if(r<0||r>n) return 0; return modMul(factorial[n],modMul(inverseFactorial[r],inverseFactorial[n-r])); }
 int _;
 vector<int> __;
 vector<vector<int>> __2d;
@@ -26,21 +29,41 @@ void solve(){
       int n ;
       cin >> n ;
       vector<int> a(n);
-      for(int i=0 ; i < n ; i ++ ) {
+      for(int i=0;i < n ;i ++) {
             cin >> a[i];
-      } 
-      vector<int> ans ;
-      for(int i=0 ;i < n ;i ++) {
-        if( i == 0 || i == n -1 || (a[i-1] < a[i]) == (a[i+1 ] < a[i])) {
-            ans.push_back(a[i]);
-        }
       }
-      cout << ans.size() << endl;
-      for(auto it: ans)
-        cout << it << " ";
-      
-      cout << endl;
-     
+      int sum =0 ;
+      for(int i=0 ;i < n ;i ++) {
+            sum += a[i];
+      }
+
+      int sum2 =0 ;
+      int curr =0 ;
+
+      for(int i=0 ; i < n -1  ;i ++) {
+            curr += a[i];
+            sum2 = max(curr ,sum2);
+            if(curr <0 ) {
+                  curr =0 ;
+            }
+      }
+      curr =0 ;
+
+
+      for(int i=1 ; i < n   ;i ++) {
+            curr += a[i];
+            sum2 = max(curr ,sum2);
+            if(curr <0 ) {
+                  curr =0 ;
+            }
+      }
+      cerr << sum2 << " " << sum << endl;
+      if(sum2 >= sum ) {
+            cout << "NO" << endl;
+      }else {
+            cout << "YES" << endl;
+      }
+    
 }
 bool multi = true;
 int32_t main(){

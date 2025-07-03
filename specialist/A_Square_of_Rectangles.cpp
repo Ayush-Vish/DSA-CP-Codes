@@ -12,35 +12,38 @@ vector<int> seive(int n) { vector<int> prime(n+1, 1); for(int i=2; i*i<=n; i++) 
 template <typename T> void takeInput(vector<T> &a, int n) { for(int i=0; i<n; i++) { T ele; cin>>ele; a[i]=ele; } }
 template <typename T> void printArr(vector<T> &a) { for(auto it:a) cout<<it<<" "; cout<<endl; }
 int fastPow(int a, int b) { int res=1; while(b) { if(b&1) res=(res*a)%mod; a=(a*a)%mod; b>>=1; } return res; }
-int gcd(int a, int b) { if(b==0) return a; return gcd(b, a%b); }
-int lcm(int a, int b) { return (a*b)/gcd(a, b); }
+int gcd(int a, int b) { return b==0 ? a : gcd(b, a%b); }
+int lcm(int a, int b) { return (a/gcd(a,b))*b; }
 int modInverse(int a) { return fastPow(a, mod-2); }
 int modAdd(int a, int b) { return (a + b) % mod; }
 int modSub(int a, int b) { return (a - b + mod) % mod; }
-
+int modMul(int a, int b) { return (1LL * a * b) % mod; }
+vector<int> factorial, inverseFactorial;
+void precomputeCombi(int n) { factorial.resize(n+1); inverseFactorial.resize(n+1); factorial[0]=1; for(int i=1;i<=n;i++) factorial[i]=modMul(factorial[i-1],i); inverseFactorial[n]=fastPow(factorial[n],mod-2); for(int i=n-1;i>=0;i--) inverseFactorial[i]=modMul(inverseFactorial[i+1],i+1); }
+int NCR(int n, int r) { if(r<0||r>n) return 0; return modMul(factorial[n],modMul(inverseFactorial[r],inverseFactorial[n-r])); }
 int _;
 vector<int> __;
 vector<vector<int>> __2d;
 
 void solve(){
-      int n ;
-      cin >> n ;
-      vector<int> a(n);
-      for(int i=0 ; i < n ; i ++ ) {
-            cin >> a[i];
-      } 
-      vector<int> ans ;
-      for(int i=0 ;i < n ;i ++) {
-        if( i == 0 || i == n -1 || (a[i-1] < a[i]) == (a[i+1 ] < a[i])) {
-            ans.push_back(a[i]);
-        }
+      int l1,b1,l2,b2,l3,b3;
+      cin >> l1 >> b1 >> l2 >> b2 >> l3 >> b3 ;
+      if(l1  == l2 + l3 && l1 == b1 + b2 && b2 == b3  ) {
+            cout << "YES" << endl;
+
+      }else if (b1 == b2 + b3 && b1 == l1 + l2 && l2 == l3 ) {
+            cout << "YES" << endl;
       }
-      cout << ans.size() << endl;
-      for(auto it: ans)
-        cout << it << " ";
-      
-      cout << endl;
-     
+      else if(l1 == b1 + b2 + b3 && l2 ==  l3 && l3 ==l1   ) {
+            cout << "YES" << endl;
+      }else if(b1 == l1 +l2 + l3 && b3 == b1 && b2 == b3  ){
+            cout << "YES" << endl;
+      }
+      else {
+
+            cout << "NO" << endl;
+      }
+    
 }
 bool multi = true;
 int32_t main(){
