@@ -32,7 +32,6 @@ void solve() {
         for (int dir = 0; dir < 4; dir++) {
             int nx = x + dx[dir];
             int ny = y + dy[dir];
-
             if (nx >= 0 && ny >= 0 && nx < r && ny < c) {
                 int cost = (grid[x][y] != grid[nx][ny]);
                 if (dist[nx][ny] > dist[x][y] + cost) {
@@ -59,6 +58,5 @@ int32_t main() {
     while (t--) {
         solve();
     }
-
     return 0;
 }
