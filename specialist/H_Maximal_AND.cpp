@@ -14,12 +14,10 @@ void solve(){
                   arr[j] += (a[i] >> j ) &1 ;
             }
       }
-
       vector<pair<int,int>> v ;
       for(int i=0 ;i < 31 ;i ++) {
             v.push_back({i,arr[i]});
       }
-
       sort(v.begin(),v.end(),greater<pair<int,int>>());
 
       for(int i=0 ;i < 31 ;i ++) {
