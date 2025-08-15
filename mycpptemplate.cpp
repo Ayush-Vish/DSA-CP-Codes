@@ -24,12 +24,55 @@ int NCR(int n, int r) { if(r<0||r>n) return 0; return modMul(factorial[n],modMul
 int _;
 vector<int> __;
 vector<vector<int>> __2d;
-
-
-void solve(){
-  
+// Segtree: 
+vector<int>nums,segTree;
+// time Complexity => O(n);
+// space complexity => O(2*n);
+void build(int i, int l, int r) {
+    if (l == r) {
+        segTree[i] = nums[l];
+        return;
+    }
+    int mid = (l + r) / 2;
+    build(2*i+1, l, mid);
+    build(2*i+2, mid+1, r);
+    segTree[i] = segTree[2*i+1] + segTree[2*i+2];
 }
-bool multi = true;
+
+void update(int i, int l, int r, int idx, int val) {
+    if (l == r) {
+        nums[idx] = val;
+        segTree[i] = val;
+        return;
+    }
+    int mid = (l + r) / 2;
+    if (idx <= mid) {
+        update(2*i+1, l, mid, idx, val);
+    } else {
+        update(2*i+2, mid+1, r, idx, val);
+    }
+    segTree[i] = segTree[2*i+1] + segTree[2*i+2];
+}
+
+int query(int i, int l, int r, int start, int end) {
+    if (l > end || r < start) return 0;
+    if (l >= start && r <= end) return segTree[i];
+    int mid = (l + r) / 2;
+    return query(2*i+1, l, mid, start, end) +
+           query(2*i+2, mid+1, r, start, end);
+}   
+
+void solve() {
+    int n = 8;
+    segTree.resize(4 * n);
+    nums.resize(n, 1);
+    build(0, 0, n-1);
+    update(0, 0, n-1, 2, 2000);
+    int ans = query(0, 0, n-1, 2, 4);
+    cout << ans << endl;
+}
+
+bool multi = false;
 int32_t main(){
    ios_base::sync_with_stdio(false);
    cin.tie(NULL);

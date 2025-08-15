@@ -19,31 +19,51 @@ int modAdd(int a, int b) { return (a + b) % mod; }
 int modSub(int a, int b) { return (a - b + mod) % mod; }
 
 int _;
-vector<int> __, v ,pre;
+vector<int> __, nums ,seg;
 vector<vector<int>> __2d;
+
+void build(int i , int l ,  int r ) {
+    if(l == r ) {
+       seg[i] = nums[l];
+       return;
+    }
+    int mid = (l +r )/2;
+    build(i*2 +1 , l , mid );
+    build(i*2 +2 ,mid +1 , r ) ;
+    seg[i] = seg[2*i+1] + seg[2*i+2];
+}
+int query(int i , int l,int r , int start, int end )  {
+    if( r < start || l > end  ) {
+        return 0;
+    }
+    if(l >= start && r <= end ) {
+        return seg[i];
+    }   
+    int mid = (l+r)/2;
+
+    return query(2*i+1,l,mid , start , end ) +
+            query(2*i+2,mid +1 ,r , start , end );
+}
 
 void solve(){
      int n,m;
      cin >> n >> m;
-     v.resize(n);
-     pre.resize(n);
+     nums.resize(n);
+     seg.resize(4*n);
+     
      for(int i=0 ;i < n ;i ++  ){
-      cin >> v[i];
-     }
-     pre[0] = v[0];
-     for(int i=1 ;i < n ;i ++ ) {
-      pre[i] = v[i] + pre[i-1];
-     }
-     for(_=0; _<m ;_++){
-      int a,b ;
-      cin >> a >> b ;
-      a -- ;
-      b -- ;
-      if(a == 0  ) {
-            cout << (b != 0 ? pre[b]:pre[0])<<endl ;
-      }else 
-            cout << pre[b] - pre[a-1]<< endl;
-     }
+         cin >> nums[i];
+        }
+    build(0,0,n-1);
+    for(int _=0 ;_  < m ; _++){
+        int a ,b ;
+        cin >> a >> b ;
+        a --, b --;
+        if (a > b) swap(a, b);     
+        cout << query(0,0,n-1,a,b) << endl;
+    }
+
+
 
 }
 int32_t main(){
