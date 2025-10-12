@@ -13,26 +13,22 @@ using namespace std;
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
+      int n,m;
+      cin >>  n >>m ;
+      vector<int> a(n);
+      for(int i=0 ;i < n ;i ++) {
+            cin >> a[i];
+      }
 
-    }
-    
+      sort(a.begin(),a.end() , greater<int>());
+      int ans =0;
+      
+      for(int i=0;i < min(n,m); i ++ )  {
+            int rem = m-i;
+            ans += (a[i]*rem);
+      }
+      cout << ans << endl;
+
 }
 bool multi = true;
 int32_t main(){

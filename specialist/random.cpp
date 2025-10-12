@@ -13,28 +13,32 @@ using namespace std;
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
+      int n ;
+      cin >> n ;
+      vector<int> diff(100001 );
+      for(int i=0 ;i < n ;i ++) {
+            int l,r;
+            cin >> l >> r ;
+            l --; r -- ;
 
-    }
+            diff[l] +=1;
+            diff[r+1] -=1;
+      }
+      for(int i=1 ;i <= 100000 ;i ++ ) {
+            diff[i] += diff[i-1];
+      }
+      
+      int q;
+      cin >> q ;
+      while(q -- ) {
+            int x;
+            cin >>x ;
+            x -=1;
+            cout << diff[x] << endl;
+      }
     
 }
-bool multi = true;
+bool multi = false;
 int32_t main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

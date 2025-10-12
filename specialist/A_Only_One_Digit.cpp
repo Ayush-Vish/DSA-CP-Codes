@@ -13,26 +13,10 @@ using namespace std;
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
-
-    }
-    
+   string s;
+   cin >>s ;
+   sort(s.begin(),s.end());
+   cout << s[0 ] << endl;
 }
 bool multi = true;
 int32_t main(){

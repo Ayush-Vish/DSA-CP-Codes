@@ -30,15 +30,25 @@ using namespace std;
  */
 /**
  * Observations:
+ * dp[i][state] => max len of Good Array till len i of type state.
+ * 0 => not stated 
+ * 1 => prev one was a[i-1];
+ * 2 => prev one was b[i-1];
  * 
- * Soo, we have give tow array a and b we need to find the no of subarrays such that
- *  c[i] = a[i] | b[i]  <  c[i+1] = a[i+1] | b[i+1]
- * we actually need to find the subaary 
- *    just use a sliding Window  
- * We cannot actaully use Sliding Window because the earlier decision affects the upcoming decisions. 
- * not able to solve during contest Need to upsolve.
+ * if(type == 0 ) {
+ *    dp[i][0] = max(dp[i-1][1],dp[i-1][2]);
+ * }else if(type ==1 ) {
+ *    if(a[i] > a[i-1]) {
+ *          w1 = dp[i-1][1];
+ *    }else if(b[i] > b[i-1]){
+ *          w2 = dp[i-1][2]
+ *   
+ *    }
  * 
- * so let dp[i] -> denotes 
+ *    dp[i][1] =  
+ * }
+ * 
+ *  
  */
 
  /**
@@ -46,15 +56,46 @@ using namespace std;
   * 
   */
 
+ vector<int>a,b;
+ vector<vector<int>> dp;
+int f(int i , int prev ) {
+
+      if(i ==a.size() ) {
+            return 0;
+      }
+
+      int ans =0;
+      if(dp[i][prev] !=   -1 ) {
+            return  dp[i][prev];
+      }
+      if(prev == 0 ) {
+            ans = max(ans, 1 + f(i+1,1));
+            ans = max(ans, 1 + f(i+1,2));
+      }else if (prev == 1) {
+            if(a[i] > a[i-1]) ans = max(ans, 1 + f(i+1,1));
+            if(b[i] > a[i-1]) ans = max(ans,1 +  f(i+1,2));
+      }else{
+            if(a[i] > b[i-1]) ans = max(ans,1 +  f(i+1,1));
+            if(b[i] > b[i-1]) ans = max(ans,1 +  f(i+1,2));
+      }
+      return dp[i][prev]  = ans ;
+}
+
 void solve(){
       int n ;
       cin >>n ;
-      vector<int>a(n),b(n);
+      a.assign(n,0), b.assign(n,0), dp.assign(n,vector<int>(3,-1));
       for(int i=0 ;i < n ;i ++) {
             cin >> a[i];
       }
       for(int i=0 ;i < n ;i ++) {cin >> b[i];}
-      
+
+      int ans =0 ;
+      for(int i=0 ;i < n ;i ++) {
+            ans += f(i,0);
+      }
+      cout << ans << endl;
+
     
 }
 bool multi = true;

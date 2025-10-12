@@ -5,6 +5,13 @@ using namespace std;
 
 /**
  * Observations:
+ *    a&b=x 
+ *    
+      b&c=y
+      a&c=z
+ *    011000110111010
+      000110000010000
+      110110111100010
  */
 
  /**
@@ -13,25 +20,20 @@ using namespace std;
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
+      int x,y,z;
+      cin >> x >>  y >>  z;
 
-    }
+      long long a = x | z;
+      long long b = x | y;
+      long long c = y | z;
+
+      if ((a & b) == x && (b & c) == y && (a & c) == z) {
+            cout << "YES\n";
+      } else {
+            cout << "NO\n";
+      }
+
+      
     
 }
 bool multi = true;

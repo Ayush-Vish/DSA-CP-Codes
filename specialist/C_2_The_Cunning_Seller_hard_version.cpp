@@ -5,6 +5,9 @@ using namespace std;
 
 /**
  * Observations:
+ *
+      
+ * 
  */
 
  /**
@@ -12,28 +15,20 @@ using namespace std;
   * 
   */
 
-void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
 
-    }
-    
+
+
+int maxi = 19 ;
+vector<int> p,cost;
+
+void solve() {
+      int n, k ;
+      cin >>  n >> k ;
+
 }
+      
+
+
 bool multi = true;
 int32_t main(){
     ios_base::sync_with_stdio(false);
@@ -41,6 +36,18 @@ int32_t main(){
     cout.tie(NULL);
     int t = 1;
     if(multi) cin >> t;
+      p.resize(maxi +1,1  ), cost.resize(maxi +1 );
+      for(int i=1; i <=maxi ; i ++) {
+            p[i] = p[i-1]*3;
+      }
+      for(int i=0;i<=maxi ; i ++) {
+            int c = p[i] * 3;
+            if (i > 0) c +=  i * p[i - 1];
+            cost[i] = c;
+      }
+      for(auto it : cost) {
+            cout << it << " ";
+      }
     while(t--){
         solve();
     }

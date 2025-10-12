@@ -13,26 +13,21 @@ using namespace std;
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
-
-    }
-    
+      int n ,m ;
+      cin >> n ;
+      string s, t ;
+      cin >> s ;
+      cin >> m ;
+      cin >> t ;
+      string k;
+      cin >> k;
+      string temp1="",temp2 ="";
+      for(int i= 0 ;i < k.size() ; i ++) {
+            if(k[i] == 'V') temp1 += t[i];
+            else temp2 += t[i];
+      }
+      reverse(temp1.begin(),temp1.end());
+      cout << temp1 + s  + temp2 << endl;
 }
 bool multi = true;
 int32_t main(){

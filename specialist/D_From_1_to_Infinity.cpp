@@ -5,34 +5,33 @@ using namespace std;
 
 /**
  * Observations:
+    
  */
 
- /**
+ /**E
   * Proof:
   * 
   */
 
 void solve(){
-    int n ;
-    cin >> n;
-    int mini = 1e9;
-    bool ok = true;
-    for(int i=0 ;i < n ; i ++){
-        int x;
-        cin >>x ;
-        if(x >= 2*mini) {
-            ok = false;
-        }
-        mini= min(mini,x);
-        
-    }
-    if(ok){
-        cout <<"YES" << endl;
-    }else{
-        cout <<"NO" << endl;
+      int n;
+      cin >> n; 
+      int d =1 ;
+      int m = n ;
+      int base = 9;
+      while( n - d * 9 > 0  ) {
+            n -= d * base;
+            base *= 10;
+            d ++;
+      }
+      int index = n %d ;
+      int res =( pow(10,(d-1)) + (n-1 ))/d ;
+      
+      cout << res << endl;
 
-    }
-    
+
+      int ans = res -1;
+      
 }
 bool multi = true;
 int32_t main(){
