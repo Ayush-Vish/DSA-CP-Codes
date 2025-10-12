@@ -17,7 +17,7 @@ void solve(){
       
 
 
-    
+    x
 }
 bool multi = false;
 int32_t main(){
