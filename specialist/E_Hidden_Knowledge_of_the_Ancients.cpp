@@ -41,13 +41,11 @@ void solve(){
                         j  ++ ;
                   }
                   ans += max(0LL,(min(i-j+1,r) - l+1));
-            }
+            }     
             return ans;
 
      };
-
      cout << f(k) - f(k-1) << endl;
-     
 }
 bool multi = true;
 int32_t main(){
